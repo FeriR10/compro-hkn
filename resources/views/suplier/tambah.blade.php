@@ -33,23 +33,24 @@
                 
                 <div class="form-group">
                     <label for="">Nama Barang</label>
-                    <text name="nama_barang" class="form-control"></text>
+                    <input type="text" name="nama_barang" class="form-control" value="">
+                    
                 </div>
                 <div class="form-group">
                     <label for="">Kategori barang</label>
-                    <text name="kategori_barang" class="form-control"></text>
+                    <input type="text" name="kategori_barang" class="form-control" value=""></text>
                 </div>
                 <div class="form-group">
                     <label for="">Kode Barang</label>
-                    <text name="kode_barang" class="form-control"></text>
+                    <input type="text" name="kode_barang" class="form-control" value=""></text>
                 </div>
                 <div class="form-group">
                     <label for="">QTY</label>
-                    <text name="qty" class="form-control"></text>
+                    <input type="text" name="qty" class="form-control" value=""></text>
                 </div>
                 <div class="form-group">
                     <label for="">Harga</label>
-                    <text name="harga" class="form-control"></text>
+                    <input type="text" name="harga" class="form-control" value=""></text>
                 </div>
                 <div>
                 <label>Thumbnail</label>

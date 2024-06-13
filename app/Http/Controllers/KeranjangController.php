@@ -75,14 +75,15 @@ class KeranjangController extends Controller
     }
     public function cekoutstore(Request $request)
     {
-        foreach ($request->cekouts as $key => $value) {
-            $barang = keranjang::find($key);
-            $cekouts = new Transaksi();
-            $cekouts->barang_id = keranjang::find($key)->barang_id;
-            $cekouts->users_id = auth()->user()->id;
-            $cekouts->qty = keranjang::find($key)->qty;
-            $cekouts->total_harga_cekout = keranjang::find($key)->total_harga;
-            $cekouts->save(); 
+        $keranjang = Keranjang::get();
+        foreach ($keranjang as $key => $value) {
+            $transaksi = new Transaksi();
+            $transaksi->users_id = auth()->user()->id;
+            $transaksi->barang_id = $value->barang_id;
+            $transaksi->qty = $value->qty;
+            $transaksi->total_harga_cekout = $value->total_harga * 0.8;
+            $transaksi->diskon_id = 1;
+            $transaksi->save();
         }
         return redirect('/keranjang');
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KeranjangController;
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,6 +38,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/barang/{id}/update', [BarangController::class, 'update']);
     Route::get('/barang/{id}/delete', [BarangController::class, 'delete']);    
     Route::get('/barangjual', [BarangController::class, 'index']);
+    Route::get('/viewdiskon', [BarangController::class, 'viewdiskon']);
+    Route::get('/creatediskon', [BarangController::class, 'creatediskon']);
+    Route::post('/creatediskon-process', [BarangController::class, 'creatediskonProcess']);
+    Route::get('/diskon/{id}/delete', [BarangController::class, 'deletediskon']);
+
 
     Route::get('/keranjang', [KeranjangController::class, 'keranjang']);
     Route::get('/diskon', [KeranjangController::class, 'diskon']);

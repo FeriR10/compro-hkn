@@ -48,8 +48,8 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                <li class="nav-item has-treeview {{ request()->is('barang','barang/*', 'tambah','tambah/*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('barang','barang/*', 'tambah','tambah/*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('barang','barang/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('barang','barang/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
                         BARANG
@@ -69,7 +69,18 @@
                                 <p>TAMBAH DATA BARANG</p>
                             </a>
                         </li>
-                       
+                        <li class="nav-item">
+                            <a href="/viewdiskon" class="nav-link {{ request()->is('viewdiskon','viewdiskon/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>DISKON</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/creatediskon" class="nav-link {{ request()->is('creatediskon','creatediskon/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>TAMBAH DISKON</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview {{ request()->is('datauser','datauser/*' ,'registeradmin','registeradmin/*') ? 'menu-open' : '' }}">

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Keranjang;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Transaksi;
+use App\Models\Diskon;
 
 
 class BarangController extends Controller
@@ -115,4 +117,39 @@ class BarangController extends Controller
         return view('suplier.barangjual', compact('barangs', 'keranjangs'));
        
     }
+    public function viewdiskon()
+    {
+        $diskon = Diskon::get();
+        return view('suplier.diskon',[
+            'diskon' => $diskon,
+        ]);
+    }
+    public function creatediskon()
+    {
+        return view('suplier.creatediskon');
+    }
+    public function creatediskonProcess(Request $request)
+    {
+        $request->validate([
+            'diskon' => 'required',
+        ]);
+        $diskon = new Diskon();
+        $diskon->diskon = $request->diskon;
+        $diskon->persen = $request->diskon / 100;
+        $diskon->save();
+
+        Session::flash('status', 'success');
+        Session::flash('message', 'Diskon Berhasil Di Tambahkan');
+        return redirect('/viewdiskon');
+    }
+    public function deletediskon($id)
+    {
+        $diskon = Diskon::find($id);
+        $diskon->delete();
+
+        Session::flash('status', 'success');
+        Session::flash('message', 'Diskon Berhasil Di HAPUS');
+        return redirect('/viewdiskon');
+    }
+
 }
