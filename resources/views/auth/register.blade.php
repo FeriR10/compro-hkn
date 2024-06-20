@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>LAPAS | @yield('title')</title>
+    <title>Ecommers</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -48,7 +48,6 @@
                     <div>
                         <label>Role</label>
                         <select name="role_id" class="form-control">
-                            <option value="2">dealer</option>
                             <option value="3">suplier</option>
                         </select>
                     </div>
