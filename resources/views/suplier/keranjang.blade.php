@@ -39,6 +39,7 @@
                             <th scope="col">Barang</th>
                             <th>Harga Satuan</th>
                             <th>QTY</th>
+                            <th>Harga Satuan</th>
                             <th>Total Harga</th>
                             <th>option</th>
                         </tr>
@@ -49,7 +50,8 @@
 
                             <td>{{ $keranjang->barang->nama_barang }}</td>
                             <td>@currency( $keranjang->barang->harga )</td>
-                            <td>{{ $keranjang->qty }}</td>
+                            <td> {{ $keranjang->qty }}</td>
+                            <td>@currency( $keranjang->harga_satuan )</td>
                             <td>@currency( $keranjang->qty * $keranjang->barang->harga )</td>
 
                             <td>
@@ -130,7 +132,8 @@
                                     <tfoot>
                                         <tr>
                                             <td colspan="2" class="text-right font-weight-bold">total</td>
-                                            <td>@currency( $cekout->sum('total_harga' ) )</td>
+                                            
+                                            
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -138,7 +141,7 @@
                         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submite" class="btn btn-primary">Bayar</button>
+                            <button type="submit" class="btn btn-primary">Bayar</button>
                         </div>
                         </form>
                     </div>

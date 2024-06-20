@@ -8,6 +8,9 @@ use App\Models\Keranjang;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Transaksi;
 use App\Models\Diskon;
+use App\Models\Cekout_aprove;
+use App\Models\Cekout;
+use App\Models\Riwayat;
 
 
 class KeranjangController extends Controller
@@ -25,7 +28,7 @@ class KeranjangController extends Controller
     }
     public function keranjang()
     {
-        $keranjang = Keranjang::get();
+        $keranjang = Keranjang::where('users_id', Auth::user()->id)->get();
         $diskon = Diskon::all();
         
         return view('suplier.keranjang',[
@@ -44,7 +47,8 @@ class KeranjangController extends Controller
             $keranjang->barang_id = $key;
             $keranjang->users_id = auth()->user()->id;
             $keranjang->qty = 1;
-            $keranjang->total_harga = $barang->harga;
+            $keranjang->harga_satuan = $barang->harga;
+            $keranjang->total_harga = $keranjang->qty * $keranjang->harga_satuan;
             $keranjang->save(); 
         }
         return redirect('/keranjang');
@@ -75,16 +79,52 @@ class KeranjangController extends Controller
     }
     public function cekoutstore(Request $request)
     {
-        $keranjang = Keranjang::get();
+        // $keranjang = Keranjang::get();
+        // foreach ($keranjang as $key => $value) {
+        //     $transaksi = new Cekout_aprove();
+        //     $transaksi->status = 'menunggu';
+        //     $transaksi->users_id = auth()->user()->id;
+        //     $transaksi->barang_id = $value->barang_id;
+        //     $transaksi->qty = $value->qty;
+        //     $transaksi->total_harga_cekout = $value->total_harga;
+        //     $transaksi->save();
+        // }
+
+        $keranjang = Keranjang::where('users_id', Auth::user()->id)->get();
+
+        // add new to cekout table
+        $cekout = new Cekout();
+        $cekout->users_id = auth()->user()->id;
+        $cekout->total_harga = $keranjang->sum('total_harga');
+        $cekout->status = 'Menunggu';
+        $cekout->save();
+        
+        // foreach save to riwayat table
         foreach ($keranjang as $key => $value) {
-            $transaksi = new Transaksi();
+            $transaksi = new Riwayat();
             $transaksi->users_id = auth()->user()->id;
             $transaksi->barang_id = $value->barang_id;
             $transaksi->qty = $value->qty;
-            $transaksi->total_harga_cekout = $value->total_harga * 0.8;
-            $transaksi->diskon_id = 1;
+            $transaksi->harga_satuan = $value->barang->harga;
+            $transaksi->total_harga = $value->total_harga;
+            $transaksi->cekout_id = $cekout->id;
             $transaksi->save();
+            $keranjang = Keranjang::find($value->id);
+            $keranjang->delete();
         }
-        return redirect('/keranjang');
+
+        return redirect('/historyorder');
+    }
+    public function historyorder()
+    {
+        // $cekorders = Cekout::get()->riwayat()->where('users_id', Auth::user()->id)->get();
+
+        // $cekorders = Cekout get where riwayat users_id = Auth::user()->id
+        $cekorders = Cekout::where('users_id', Auth::user()->id)->get();
+
+
+        return view('suplier.historyorder',[
+            'cekorders' => $cekorders
+        ]);
     }
 }

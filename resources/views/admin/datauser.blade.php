@@ -66,7 +66,7 @@
                                 @endif
                                 
                                 <td>
-                                    <a href="/datauser/{{ $user->id }}/edit" class="btn btn-primary btn-sm">
+                                    <a href="/edituser/{{ $user->id }}" class="btn btn-primary btn-sm">
                                         Edit
                                     </a>
                                 

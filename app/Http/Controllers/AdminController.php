@@ -52,4 +52,40 @@ class AdminController extends Controller
             'users' => $users,
         ]);
     }
+    public function edituser($id)
+    {
+        $users = User::find($id);
+        $profileuser = Profileuser::where('users_id', $id)->get();
+        return view('admin.edituser',compact('users','profileuser'));
+    }
+    public function updateuser($id, Request $request)
+    {
+        $users = User::find($id);
+        $users->name = $request->name;
+        $users->email = $request->email;
+        $users->save();
+        if ($users->profileuser) {
+            $profileuser = Profileuser::where('users_id', $id)->first();
+            $profileuser->alamat = $request->alamat;
+            $profileuser->alamat_kirim = $request->alamat_kirim;
+            $profileuser->no_telpon = $request->no_telpon;
+            $profileuser->nama_pic = $request->nama_pic;
+            $profileuser->users_id = $id;
+            $profileuser->save();
+        }
+        else {
+            $profileuser = new Profileuser();
+            $profileuser->alamat = $request->alamat;
+            $profileuser->alamat_kirim = $request->alamat_kirim;
+            $profileuser->no_telpon = $request->no_telpon;
+            $profileuser->nama_pic = $request->nama_pic;
+            $profileuser->users_id = $id;
+            $profileuser->save();
+        }
+
+        Session::flash('status', 'success');
+        Session::flash('message', 'Akun User sukses diupdate');
+        return redirect('/datauser');
+    }
+   
 }

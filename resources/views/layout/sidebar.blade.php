@@ -4,7 +4,9 @@
     <a href="/dashboard" class="brand-link">
         <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
         <!-- <img src="{{ asset('assets/images/logodishub.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3 img-fluid" style="opacity: .8"> -->
-        <span class="brand-text font-weight-light"> <i class="fa-solid fa-dumpster"></i>ECOMMERS</span>
+        <span class="brand-text font-weight-light"> <i class="fa-solid fa-dumpster"></i> ECOMMERS</span><div class="spinner-grow text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
     </a>
 
     <!-- Sidebar -->
@@ -31,17 +33,28 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-                   <a href="/barangjual" class="nav-link {{ request()->is('dealer') ? 'active' : '' }}" >
+                   <a href="/barangjual" class="nav-link {{ request()->is('barangjual','barangjual/*') ? 'active' : '' }}" >
                    <i class="fa-solid fa-bag-shopping"></i>
                        <p>SHOP</p>
                    </a>
                </li>
                <li class="nav-item">
-                   <a href="/keranjang" class="nav-link {{ request()->is('dealer') ? 'active' : '' }}" >
+                   <a href="/keranjang" class="nav-link {{ request()->is('keranjang','keranjang/*') ? 'active' : '' }}" >
                    <i class="fa-solid fa-cart-shopping"></i>
                        <p>KERANJANG</p>
                    </a>
+               </li><li class="nav-item">
+                   <a href="/historyorder" class="nav-link {{ request()->is('historyorder','historyorder/*') ? 'active' : '' }}" >
+                   <i class="fa-solid fa-cart-shopping"></i>
+                       <p>Data Order</p>
+                   </a>
                </li>
+               <li class="nav-item">
+                            <a href="/order" class="nav-link {{ request()->is('order','order/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>Order</p>
+                            </a>
+                        </li>
                <li class="nav-item">
                             <a href="/dashboard" class="nav-link {{ request()->is('admin') ? 'active' : '' }}" >
                                 <i class="nav-icon fas fa-house"></i>
@@ -69,6 +82,7 @@
                                 <p>TAMBAH DATA BARANG</p>
                             </a>
                         </li>
+                        
                         <li class="nav-item">
                             <a href="/viewdiskon" class="nav-link {{ request()->is('viewdiskon','viewdiskon/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-layer-group"></i>

@@ -15,9 +15,9 @@
     <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <li>
-        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#keranjang">
-        <i class="fa-solid fa-cart-shopping"></i>
-                
+            <a href="/keranjang">
+                <i class="fa-solid fa-cart-shopping"></i>
+
             </a>
         </li>
         <li class="nav-item dropdown">
@@ -46,16 +46,64 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <ul class="list-group">
-                    <li class="list-group-item active" aria-current="true">@if (auth()->user())
-                        {{ auth()->user()->name }}
-                        @endif</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
-                </ul>
+                <ul class="list-group " style="width:100%">
+                    <li class="list-group-item ">
+                        @if (auth()->check())
+                        <div class="alert alert-light form-group" role="alert">
+                            NAMA : {{ auth()->user()->name }}
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="alert alert-light form-group" role="alert">
+                            Email : {{ auth()->user()->email }}
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="alert alert-light form-group" role="alert">
+                            Status : {{ auth()->user()->role->role }}<br>
+                        </div>
+                    </li>
 
+                    <li class="list-group-item">
+                        <div class="alert alert-light form-group" role="alert">
+                            Alamat : @if(auth()->user()->profileuser)
+                            {{ auth()->user()->profileuser->alamat }}
+                            @else
+                            Tidak ada data
+                            @endif
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="alert alert-light form-group" role="alert">
+                            Alamat Kirim :@if(auth()->user()->profileuser)
+                            {{ auth()->user()->profileuser->alamat_kirim }}
+                            @else
+                            Tidak ada data
+                            @endif
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="alert alert-light form-group" role="alert">
+                            No Hp : @if(auth()->user()->profileuser)
+                            {{ auth()->user()->profileuser->no_telpon }}
+                            @else
+                            Tidak ada data
+                            @endif
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="alert alert-light form-group" role="alert">
+                            Nama PIC :@if(auth()->user()->profileuser)
+                            {{ auth()->user()->profileuser->nama_pic }}
+                            @else
+                            Tidak ada data
+                            @endif
+                            @endif
+                        </div>
+                    </li>
+
+                </ul>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -66,37 +114,3 @@
     </div>
 </div>
 <!-- Modal 2 -->
-<div class="modal fade" id="keranjang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <div>
-            <h1>Keranjang</h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        
-                        <th scope="col">barang</th> 
-                        <th>harga satuan</th> 
-                        <th>qty</th>
-                        <th>total harga</th>
-                        <th>option</th>
-                    </tr>
-                </thead>
-                <tbody>
-                       
-                </tbody>
-                
-                   
-            </table>
-        </div>
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-
-            </div>
-
-        </div>
-    </div>
-</div>

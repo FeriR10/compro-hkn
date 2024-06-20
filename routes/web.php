@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\DealerController;
+
 
 
 
@@ -27,6 +30,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/registeradmin', [AdminController::class, 'registeradmin']);
     Route::post('/tambahuser', [AdminController::class, 'tambahuserProcess']);
     Route::get('/datauser', [AdminController::class, 'datauser']);
+    Route::get('/edituser/{id}', [AdminController::class, 'edituser']);
+    Route::put('/updateuser/{id}', [AdminController::class, 'updateuser']);
+    Route::get('/deleteuser/{id}', [AdminController::class, 'deleteuser']);
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
     Route::get('/view', [AdminController::class, 'view']);
 
@@ -51,5 +57,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/keranjang/store', [KeranjangController::class, 'store']);
     Route::get('/keranjang/kurang/{id}', [KeranjangController::class, 'kurang']);
     Route::get('/keranjang/tambah/{id}', [KeranjangController::class, 'tambah']);
+    Route::get('/historyorder', [keranjangController::class, 'historyorder']);
+
     
+    Route::get('/order', [DealerController::class, 'order']);
+    Route::get('/aprove/{id}/menunggu', [DealerController::class, 'aprove']);
 });
