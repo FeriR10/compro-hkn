@@ -40,7 +40,6 @@
                             <th>Jumlah Barang</th>
                             <th>Total Harga</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,18 +99,14 @@
 
                             </th>
                             <th>@currency($cek->total_harga)</th>
-                            <th>
-                                @if($cek->status == 'Selesai')
-                                <span class="badge badge-success">Selesai</span>
-                                @elseif($cek->status == 'Menunggu')
-                                <span class="badge badge-danger">Belum Selesai</span>
-                                @endif
-                            </th>
+                           
                             <th>
                             @if ($cek->status == 'Menunggu')
-                                    <a href="/aprove/{{$cek->id}}/menunggu" class="btn btn-danger btn-sm">{{ $cek->status }} Aproved</a>
-                                @else
-                                    <a href="" class="btn btn-success btn-sm">Aprove</a>
+                                    <a href="/aprove/{{$cek->id}}/menunggu" class="btn btn-warning btn-sm">{{ $cek->status }} Aprove</a>
+                                @elseif($cek->status == 'Aprove')
+                                    <a href="" class="badge badge-success">Berhasil Di Aprove</a>
+                                @elseif($cek->status == 'Dibatalkan')
+                                    <a href="" class="badge badge-danger">Dibatalkan</a>
                                 @endif
                                 <!-- <a href="/edit/{{ $cek->id }}" class="btn btn-outline-secondary btn-sm">
                                     Aprove

@@ -41,7 +41,7 @@ class AuthController extends Controller
                 return redirect('/login');
             }
  
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/barangjual');
         }
 
         Session::flash('status', 'failed');

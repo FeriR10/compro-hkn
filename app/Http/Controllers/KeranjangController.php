@@ -11,6 +11,8 @@ use App\Models\Diskon;
 use App\Models\Cekout_aprove;
 use App\Models\Cekout;
 use App\Models\Riwayat;
+use Illuminate\Support\Facades\Session;
+
 
 
 class KeranjangController extends Controller
@@ -79,17 +81,7 @@ class KeranjangController extends Controller
     }
     public function cekoutstore(Request $request)
     {
-        // $keranjang = Keranjang::get();
-        // foreach ($keranjang as $key => $value) {
-        //     $transaksi = new Cekout_aprove();
-        //     $transaksi->status = 'menunggu';
-        //     $transaksi->users_id = auth()->user()->id;
-        //     $transaksi->barang_id = $value->barang_id;
-        //     $transaksi->qty = $value->qty;
-        //     $transaksi->total_harga_cekout = $value->total_harga;
-        //     $transaksi->save();
-        // }
-
+        
         $keranjang = Keranjang::where('users_id', Auth::user()->id)->get();
 
         // add new to cekout table
@@ -111,6 +103,11 @@ class KeranjangController extends Controller
             $transaksi->save();
             $keranjang = Keranjang::find($value->id);
             $keranjang->delete();
+
+            //pengurangan stok
+            $barang = Barang::find($value->barang_id);
+            $barang->qty = $barang->qty - $value->qty;
+            $barang->update();
         }
 
         return redirect('/historyorder');
@@ -127,4 +124,16 @@ class KeranjangController extends Controller
             'cekorders' => $cekorders
         ]);
     }
+    
+    //update status historyorderupdate
+    public function historyorderupdate($id)
+    {
+        $cekorder = Cekout::find($id);
+        $cekorder->status = "Dibatalkan";
+        $cekorder->update();
+        Session::flash('status', 'success');
+        Session::flash('message', 'Pesanan di Batalkan');
+        return redirect('/historyorder');
+    }
+    
 }

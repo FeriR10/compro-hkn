@@ -23,7 +23,7 @@ class DealerController extends Controller
 
         // update data 
         $cekorder = Cekout::find($id);
-        $cekorder->status = "Selesai";
+        $cekorder->status = "Aprove";
         $cekorder->update();
         Session::flash('status', 'success');
         Session::flash('message', 'Status Menjadi Selesai');

@@ -97,8 +97,19 @@
 
                             </th>
                             <th>@currency($cek->total_harga)</th>
-                            <th>{{$cek->status}}
+                            
+                            <th>
+                                @if($cek->status == 'Aprove')
+                                <span class="badge badge-success">Aprove</span>
+                                @elseif($cek->status == 'Menunggu')
+                                <span class="badge badge-warning">Belum Selesai</span>
+                                <a href="historyorder/{{ $cek->id }}/update" class="badge badge-danger">Batal</a>
+                                @elseif($cek->status == 'Dibatalkan')
+                                <span class="badge badge-danger">Dibatalkan</span>
+                                @endif
+                               
                             </th>
+                            
                         </tr>
                         @endforeach
                     </tbody>

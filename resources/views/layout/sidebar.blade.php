@@ -112,7 +112,7 @@
                     </ul>
                 </li>
                 @endif
-                @if (auth()->user()->role_id == 3 || auth()->user()->role_id == 1)
+                @if (auth()->user()->role_id == 1)
                 <li
                     class="nav-item has-treeview {{ request()->is('datauser','datauser/*' ,'registeradmin','registeradmin/*') ? 'menu-open' : '' }}">
                     <a href="#"
