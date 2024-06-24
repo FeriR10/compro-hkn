@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Harga</label>
-                    <textarea name="harga" class="form-control">@currency($barang->harga)</textarea>
+                    <textarea name="harga" class="form-control">{{ $barang->harga }}</textarea>
                 </div>
                 <div>
                 

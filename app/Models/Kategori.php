@@ -13,6 +13,6 @@ class Kategori extends Model
     
     public function barang()
     {
-        return $this->belongsTo(Barang::class, 'kategori_id', 'id');
+        return $this->belongsTo(Barang::class, 'id_kategori', 'id');
     }
 }

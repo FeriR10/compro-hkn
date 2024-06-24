@@ -49,7 +49,7 @@
                        @foreach($barang as $barang)
                             <tr>
                                 <th>{{$barang->nama_barang}}</th>
-                                <th>{{$barang->kategori->kategori_barang}}</th>
+                                <th>{{$barang->kategori->kategori_barang ?? '-'}}</th>
                                 <th>{{$barang->kode_barang}}</th>
                                 <th>{{$barang->qty}}</th>
                                 <th>@currency($barang->harga)</th>

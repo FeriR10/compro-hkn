@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('barang', function (Blueprint $table) {
-            $table->unsignedBigInteger('kategori_id');
-            $table->foreign('kategori_id')->references('id')->on('kategori');
+            $table->foreignId('id_kategori')->nullable()->after('id');
+            $table->foreign('id_kategori')->references('id')->on('kategori');
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('barang', function (Blueprint $table) {
-            $table->dropForeign(['kategori_id']);
-            $table->dropColumn('kategori_id'); 
+            $table->dropForeign(['id_kategori']);
+            $table->dropColumn('id_kategori');
         });
     }
 };

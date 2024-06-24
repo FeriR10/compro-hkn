@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::table('cekout', function (Blueprint $table) {
             $table->unsignedBigInteger('users_id')->after('id')->nullable();
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('restrict')
-            ->onUpdate('restrict');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

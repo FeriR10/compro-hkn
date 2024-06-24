@@ -56,17 +56,14 @@
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
                         <tr>
-                            <th>Nama Barang</th>
-                            <th>Action</th>
+                            <th>Kategori</th>
                         </tr>
                     </thead>
                     <tbody>
                        @foreach($kategoris as $kategori)
                             <tr>
                                 <th>{{$kategori->kategori_barang}}</th>
-                                <th>
-                                <a href="/kategori/{{$kategori->id}}/delete" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS KATEGORI INI?')" class="btn btn-danger"> Delete</a>
-                                </th>
+                                
                             </tr>
                        @endforeach
                     </tbody>
