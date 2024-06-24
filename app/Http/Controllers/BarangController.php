@@ -182,12 +182,23 @@ class BarangController extends Controller
     }
 
     
-    public function kategoridelete($id)
+    public function editkategori($id)
     {
         $kategoris = Kategori::find($id);
-        $kategoris->delete();
+        return view('suplier.editkategori',[
+            'kategoris' => $kategoris
+        ]);
+    }
+    public function editkategoriudpate(Request $request, $id)
+    {
+        $request->validate([
+            'kategori_barang' => 'required',
+        ]);
+        $kategoris = Kategori::find($id);
+        $kategoris->kategori_barang = $request->kategori_barang;
+        $kategoris->update();
         Session::flash('status', 'success');
-        Session::flash('message', 'Delete kategori sukses');
+        Session::flash('message', 'Edit Kategori sukses');
         return redirect('/kategori');
     }
     

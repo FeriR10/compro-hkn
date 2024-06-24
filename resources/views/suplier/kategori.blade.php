@@ -25,7 +25,7 @@
                     {{Session::get('message')}}
                 </div>
                 @endif
-                <h3 class="card-title">Tambah Kategori</h3>
+                <h3 class="card-title">Kategori</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -57,13 +57,16 @@
                     <thead>
                         <tr>
                             <th>Kategori</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                        @foreach($kategoris as $kategori)
                             <tr>
                                 <th>{{$kategori->kategori_barang}}</th>
-                                
+                                <th>
+                                    <a href="/editkategori/{{$kategori->id}}">Edit</a>
+                                </th>
                             </tr>
                        @endforeach
                     </tbody>
