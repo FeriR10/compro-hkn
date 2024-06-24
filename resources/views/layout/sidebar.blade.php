@@ -33,7 +33,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               @if (auth()->user()->role_id == 2 || auth()->user()->role_id == 1)
+               @if (auth()->user()->role_id == 2)
                 <li class="nav-item">
                     <a href="/barangjual"
                         class="nav-link {{ request()->is('barangjual','barangjual/*') ? 'active' : '' }}">
@@ -72,12 +72,12 @@
                 @endif
                 @if (auth()->user()->role_id == 3 || auth()->user()->role_id == 1)
                 <li
-                    class="nav-item has-treeview {{ request()->is('barang','barang/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'menu-open' : '' }}">
+                    class="nav-item has-treeview {{ request()->is('barang','barang/*','kategori','kategori/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'menu-open' : '' }}">
                     <a href="#"
-                        class="nav-link {{ request()->is('barang','barang/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('barang','barang/*','kategori','kategori/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
-                            BARANG
+                            TOOL BARANG
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -94,7 +94,12 @@
                                 <p>TAMBAH DATA BARANG</p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="/kategori" class="nav-link {{ request()->is('kategori','kategori/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>TAMBAH KATEGORI </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="/viewdiskon"
                                 class="nav-link {{ request()->is('viewdiskon','viewdiskon/*') ? 'active' : '' }}">

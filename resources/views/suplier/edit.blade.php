@@ -50,9 +50,13 @@
                     <textarea name="nama_barang" class="form-control">{{ $barang->nama_barang}}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="">Kategori Barang</label>
-                    <textarea name="kategori_barang" class="form-control">{{ $barang->kategori_barang }}</textarea>
-                </div>
+                        <label>Kategori</label>
+                        <select name="kategori_id" class="form-control">
+                            @foreach($kategoris as $barangkategori)
+                            <option @if($barang->kategori_id == $barangkategori->id) selected @endif value="{{$barangkategori->id}}">{{$barangkategori->kategori_barang}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 <div class="form-group">
                     <label for="">Kode Barang</label>
                     <textarea name="kode_barang" class="form-control">{{ $barang->kode_barang }}</textarea>
@@ -63,7 +67,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Harga</label>
-                    <textarea name="harga" class="form-control">{{ $barang->harga }}</textarea>
+                    <textarea name="harga" class="form-control">@currency($barang->harga)</textarea>
                 </div>
                 <div>
                 

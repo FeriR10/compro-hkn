@@ -10,6 +10,7 @@ use App\Models\Keranjang;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Transaksi;
 use App\Models\Diskon;
+use App\Models\Kategori;
 
 
 class BarangController extends Controller
@@ -22,14 +23,17 @@ class BarangController extends Controller
         ]);
     }
     public function tambah()
-    {
-        return view('suplier.tambah');
+    {   
+        $kategoris = Kategori::get();
+        return view('suplier.tambah',[
+            'kategoris' => $kategoris
+        ]);
     }
     public function create(Request $request)
     {
         $request->validate([
             'nama_barang' => 'required',
-            'kategori_barang' => 'required',
+            'kategori_id' => 'required',
             'kode_barang' => 'required',
             'qty' => 'required',
             'harga' => 'required',
@@ -39,7 +43,7 @@ class BarangController extends Controller
 
         $barangs = new Barang();
         $barangs->nama_barang = $request->nama_barang;
-        $barangs->kategori_barang = $request->kategori_barang;
+        $barangs->kategori_id = $request->kategori_id;
         $barangs->kode_barang = $request->kode_barang;
         $barangs->qty = $request->qty;
         $barangs->harga = $request->harga;
@@ -60,15 +64,17 @@ class BarangController extends Controller
     public function edit($id)
     {
         $barang = Barang::find($id);
+        $kategori = Kategori::all();
         return view('suplier.edit',[
-            'barang' => $barang
+            'barang' => $barang,
+            'kategoris' => $kategori
         ]);
     }
     public function update(Request $request, $id)
     {
         $request->validate([
             'nama_barang' => 'required',
-            'kategori_barang' => 'required',
+            'kategori_id' => 'required',
             'kode_barang' => 'required',
             'qty' => 'required',
             'harga' => 'required',
@@ -77,7 +83,7 @@ class BarangController extends Controller
         // update data 
         $barang = Barang::find($id);
         $barang->nama_barang = $request->nama_barang;
-        $barang->kategori_barang = $request->kategori_barang;
+        $barang->kategori_id = $request->kategori_id;
         $barang->kode_barang = $request->kode_barang;
         $barang->qty = $request->qty;
         $barang->harga = $request->harga;
@@ -151,5 +157,38 @@ class BarangController extends Controller
         Session::flash('message', 'Diskon Berhasil Di HAPUS');
         return redirect('/viewdiskon');
     }
+    public function kategori()
+    {
+       $kategori = Kategori::get();
+        return view('suplier.kategori',[
+            'kategoris' => $kategori,
+        ]);
+    }
+    public function createkategori(Request $request)
+    {
+        $request->validate([
+            'kategori_barang' => 'required',
+        ]);
 
+        $kategoris = new Kategori();
+        $kategoris->kategori_barang = $request->kategori_barang;
+       
+        $kategoris->save();
+        
+        Session::flash('status', 'success');
+        Session::flash('message', 'Tambah Kategori sukses');
+        return redirect('/kategori');
+      
+    }
+
+    
+    public function kategoridelete($id)
+    {
+        $kategoris = Kategori::find($id);
+        $kategoris->delete();
+        Session::flash('status', 'success');
+        Session::flash('message', 'Delete kategori sukses');
+        return redirect('/kategori');
+    }
+    
 }

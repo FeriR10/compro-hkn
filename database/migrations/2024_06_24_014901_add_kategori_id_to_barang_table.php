@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('cekout', function (Blueprint $table) {
-            $table->unsignedBigInteger('users_id')->after('id')->nullable();
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('restrict')
+        Schema::table('barang', function (Blueprint $table) {
+            $table->unsignedBigInteger('kategori_id')->after('id')->nullable();
+            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('restrict')
             ->onUpdate('restrict');
         });
     }
@@ -23,9 +23,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('cekout', function (Blueprint $table) {
-            $table->dropForeign(['users_id']);
-            $table->dropColumn('users_id');
+        Schema::table('barang', function (Blueprint $table) {
+            $table->dropForeign(['kategori_id']);
+            $table->dropColumn('kategori_id');
         });
     }
 };

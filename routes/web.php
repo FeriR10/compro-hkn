@@ -48,7 +48,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/creatediskon', [BarangController::class, 'creatediskon']);
     Route::post('/creatediskon-process', [BarangController::class, 'creatediskonProcess']);
     Route::get('/diskon/{id}/delete', [BarangController::class, 'deletediskon']);
-
+    Route::get('/kategori', [BarangController::class, 'kategori']);
+    Route::post('/kategori/create', [BarangController::class, 'createkategori']);
+    Route::get('/kategori/{id}/delete', [BarangController::class, 'kategoridelete']);
 
     Route::get('/keranjang', [KeranjangController::class, 'keranjang']);
     Route::get('/diskon', [KeranjangController::class, 'diskon']);

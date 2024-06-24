@@ -36,11 +36,16 @@
                     <input type="text" name="nama_barang" class="form-control" value="">
                     
                 </div>
+                
                 <div class="form-group">
-                    <label for="">Kategori barang</label>
-                    <input type="text" name="kategori_barang" class="form-control" value=""></text>
-                </div>
-                <div class="form-group">
+                        <label>Kategori</label>
+                        <select name="kategori_id" class="form-control">
+                            @foreach($kategoris as $barangkategori)
+                            <option value="{{$barangkategori->id}}">{{$barangkategori->kategori_barang}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                     <label for="">Kode Barang</label>
                     <input type="text" name="kode_barang" class="form-control" value=""></text>
                 </div>
