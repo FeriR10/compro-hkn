@@ -30,13 +30,17 @@ class KeranjangController extends Controller
     }
     public function keranjang()
     {
-        $keranjang = Keranjang::where('users_id', Auth::user()->id)->get();
+        $user = Auth::user();
+        
+        $keranjang = Keranjang::where('users_id', $user->id)->get();
+        $totalHarga = $keranjang->sum('total_harga');
         $diskon = Diskon::all();
         
         return view('suplier.keranjang',[
             'keranjang' => $keranjang,
             'cekouts' => $keranjang,
             'diskon' => $diskon,
+            'totalHarga' => $totalHarga
            
         ]);
     }
@@ -81,13 +85,25 @@ class KeranjangController extends Controller
     }
     public function cekoutstore(Request $request)
     {
-        
         $keranjang = Keranjang::where('users_id', Auth::user()->id)->get();
+
+        $diskon_id = $request->diskon;
+        $total_harga = $keranjang->sum('total_harga');
+        $potongan_harga = 0;
+        if (!empty($diskon_id)) {
+        $diskon = Diskon::find($diskon_id);
+        if ($diskon) {
+            // Misalnya diskon diterapkan dalam bentuk persentase
+            $potongan_harga = $total_harga * ($diskon->diskon / 100);
+            }
+        }
+        $total_harga_setelah_diskon = $total_harga - $potongan_harga;
 
         // add new to cekout table
         $cekout = new Cekout();
         $cekout->users_id = auth()->user()->id;
-        $cekout->total_harga = $keranjang->sum('total_harga');
+        $cekout->diskon_id = $request->diskon;
+        $cekout->total_harga = $total_harga_setelah_diskon ;
         $cekout->status = 'Menunggu';
         $cekout->save();
         

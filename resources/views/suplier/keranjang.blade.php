@@ -66,7 +66,11 @@
                     <tfoot>
                         <tr>
                             <td colspan="4" class="text-right font-weight-bold">total</td>
-                            <td>@currency( $keranjang->sum('total_harga' ) )</td>
+                            
+                            <td>
+                                @currency($totalHarga)
+                            </td>
+                         
                         </tr>
                         <td colspan="5" class="text-right font-weight-bold">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cekoout">
@@ -120,10 +124,10 @@
                                             <tr>
                                                 <div>
                                                     <label>Vocher tersedia</label>
-                                                    <select name="role_id" class="form-control">
-                                                    @foreach ($diskon as $d)
+                                                    <select name="diskon" class="form-control">
+                                                        @foreach ($diskon as $d)
                                                         <option value="{{ $d->id }}">{{ $d->diskon }}% DISKON</option>
-                                                    @endforeach
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </tr>
@@ -132,19 +136,19 @@
                                     <tfoot>
                                         <tr>
                                             <td colspan="2" class="text-right font-weight-bold">total</td>
-                                            
-                                            
+
+
                                         </tr>
                                     </tfoot>
                                 </table>
-                           
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Bayar</button>
+
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Bayar</button>
+                                </div>
+                            </form>
                         </div>
-                        </form>
-                    </div>
                     </div>
                 </div>
             </div>

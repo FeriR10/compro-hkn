@@ -19,4 +19,8 @@ class Keranjang extends Model
     {
         return $this->belongsTo(Barang::class, 'barang_id', 'id');
     }
+    public function diskon()
+    {
+        return $this->belongsTo(Diskon::class, 'diskon_id', 'id');
+    }
 }

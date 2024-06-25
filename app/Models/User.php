@@ -54,5 +54,10 @@ class User extends Authenticatable
         return $this->hasOne(Profileuser::class, 'users_id', 'id');
 
     }
+    public function keranjangs()
+{
+    return $this->hasMany(Keranjang::class);
+}
+
     
 }
