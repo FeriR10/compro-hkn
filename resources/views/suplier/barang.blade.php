@@ -41,7 +41,7 @@
                             <th>Kode Barang</th>
                             <th>QTY</th>
                             <th>Harga</th>
-                            <th>Thumbnail</th>
+                            <th>Gambar Product</th>
                             <th>Action</th>
                         </tr>
                     </thead>

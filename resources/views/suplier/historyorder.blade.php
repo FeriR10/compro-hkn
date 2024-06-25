@@ -35,7 +35,7 @@
                     <thead>
                         <tr>
 
-                            <th>Kode Cek-Out</th>
+                            <th>Kode Order</th>
                             <th>Jumlah Barang</th>
                             <th>Total Harga</th>
                             <th>Status</th>

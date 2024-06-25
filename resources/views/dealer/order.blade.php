@@ -36,7 +36,9 @@
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
                         <tr>
-                            <th>Nama</th>
+                            <th>No Pemesanan</th>
+                            <th>Nama Pemesan</th>
+                            <th>Tanggal Pemesanan</th>
                             <th>Jumlah Barang</th>
                             <th>Total Harga</th>
                             <th>Status</th>
@@ -46,7 +48,58 @@
                         @foreach($cekorders as $cek )
                         <tr>
                             <!-- $cek get data user name -->
-                            <th> {{$cek->user->name}} </th>
+                            <th> {{$cek->id}} </th>
+                            <th> 
+                            <button type="button" class=" " data-toggle="modal"
+                                    style="border:none"
+                                    data-target="#profile-{{$cek->id}}">
+                                    {{$cek->user->name}}
+                                </button> 
+                                <div class="modal fade" id="profile-{{$cek->id}}" tabindex="-1"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <table id="example1" class="table table-bordered table-striped"
+                                                                    style="text-align: center">
+                                                                    <thead>
+                                                                        <tr>
+
+                                                                            <th>Nama</th>
+                                                                            <th>Email</th>
+                                                                            <th>No. Hp</th>
+                                                                            <th>Alamat Kirim</th>
+                                                                            
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach($cek->riwayat as $riwayat)
+                                                                        <tr>
+                                                                            <th> {{$riwayat->user->name}} </th>
+                                                                            <th> {{$riwayat->user->email}} </th>
+                                                                            <th> {{$riwayat->user->profileuser->no_telpon ?? '-'}} </th>
+                                                                            <th> {{$riwayat->user->profileuser->alamat_kirim ?? '-'}} </th>
+                                                                        </tr>
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                            </th>
+                            <th> {{$cek->created_at}} </th>
                             <th>
                                 <button type="button" class="badge badge-light" data-toggle="modal"
                                     data-target="#riwayat-{{$cek->id}}">

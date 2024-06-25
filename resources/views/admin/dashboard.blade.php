@@ -40,7 +40,7 @@
                             <th>Kategori Barang</th>
                             <th>Kode Barang</th>
                             <th>QTY</th>
-                            <th>Thumbnail</th>
+                            <th>Gambar Product</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -72,7 +72,7 @@
                 <div>
                 
                 <div class="form-group">
-                    <label for="">Thumbnail</label>
+                    <label for="">Gambar Product</label>
                     <input type="hidden" name="oldImage" value="{{$barang->thumbnail}}">
                     <input type="file" accept="image/*" name="thumbnail" class="form-control">
                 </div>
