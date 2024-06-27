@@ -8,7 +8,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                
+
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -28,31 +28,33 @@
                 </div>
             </div>
             <div class="card-body">
-            @if(isset($upload) && $upload != null)
-    <form action="/createuploadbuktibayar/{{$upload->id}}/update" method="POST" enctype="multipart/form-data">
-@else
-    <form action="/createuploadbuktibayar/0/update" method="POST" enctype="multipart/form-data">
-@endif
-    <!-- form fields go here -->
-                @csrf
-                
-                <div class="form-group">
-                    <label for="">Total Harga</label>x
-                    <input type="text" class="form-control" value="test" readonly>
-                    
-                </div>
-                
-                <div>
-                <label>Upload Bukti Transfer</label>
-                    {{-- <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt=""> --}}
-                    <img src="" class="img-preview img-fluid" alt="">
-                    <input type="file" accept=".jpg, .jpeg, .png, .svg, .webp" onchange="previewImg()" id="image" name="bukti_bayar" class="form-control">
-                    @if($errors->has('bukti_bayar'))
-                    <span class="help-block" style="color: red">{{ $errors->first('bukti_bayar') }}</span>
-                    @endif
-                </div>
-                <button type="submit" class="btn btn-success">Simpan</button>
-                </form>
+                @if(isset($upload) && $upload != null)
+                <form action="/createuploadbuktibayar/{{$upload->id}}/update" method="POST"
+                    enctype="multipart/form-data">
+                    @else
+                    <form action="/createuploadbuktibayar/0/update" method="POST" enctype="multipart/form-data">
+                        @endif
+                        <!-- form fields go here -->
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="">Total Harga</label>x
+                            <input type="text" class="form-control" value="test" readonly>
+
+                        </div>
+
+                        <div>
+                            <label>Upload Bukti Transfer</label>
+                            {{-- <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt=""> --}}
+                            <img src="" class="img-preview img-fluid" alt="">
+                            <input type="file" accept=".jpg, .jpeg, .png, .svg, .webp" onchange="previewImg()"
+                                id="image" name="bukti_bayar" class="form-control">
+                            @if($errors->has('bukti_bayar'))
+                            <span class="help-block" style="color: red">{{ $errors->first('bukti_bayar') }}</span>
+                            @endif
+                        </div>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                    </form>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
@@ -80,8 +82,9 @@
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])
 
-        oFReader.onload = function(oFREvent) {
+        oFReader.onload = function (oFREvent) {
             imgPreview.src = oFREvent.target.result
         }
     }
+
 </script>
