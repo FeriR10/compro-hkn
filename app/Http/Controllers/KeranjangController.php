@@ -138,7 +138,7 @@ class KeranjangController extends Controller
             $barang->update();
         }
 
-        return redirect('/historyorder');
+        return redirect('/historypemesanan');
     }
     public function historyorder()
     {
