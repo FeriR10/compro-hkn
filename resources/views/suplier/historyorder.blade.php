@@ -39,6 +39,8 @@
                             <th>Jumlah Barang</th>
                             <th>Total Harga</th>
                             <th>Status Kirim</th>
+                            <th>Bukti Bayar</th>
+                            <th>Status Bayar</th>
                         </tr>
                     </thead>
                     <tbody>

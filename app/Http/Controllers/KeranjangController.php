@@ -105,7 +105,7 @@ class KeranjangController extends Controller
 
         // add new to cekout table
         $payment = new Payment();
-        $payment->status = "belum di transfer";
+        $payment->status = "Belum Di Transfer";
         $payment->jenis_payment_id = $request->jenis_payment_id;
         $payment->users_id = auth()->user()->id;
         $payment->save();

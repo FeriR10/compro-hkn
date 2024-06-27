@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cekout;
 use Illuminate\Support\Facades\Session;
 use Auth;
+use App\Models\Payment;
 
 
 
@@ -17,6 +18,20 @@ class DealerController extends Controller
         return view('dealer.order',[
             'cekorders' => $cekorders
         ]);
+    }
+    public function aprovepayment($id)
+    {
+
+        // update data 
+        $pay = Cekout::find($id);
+        $aprove = Payment::find($pay->payment_id);
+        $aprove->status = "Berhasil Bayar";
+        $aprove->update();
+      
+        Session::flash('status', 'success');
+        Session::flash('message', 'Status Menjadi Berhasil Bayar');
+        return redirect('/order');
+    
     }
    
     public function aprove($id)
