@@ -33,7 +33,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               @if (auth()->user()->role_id == 2)
+               @if (auth()->user()->role_id == 2 || auth()->user()->role_id == 1)
                 <li class="nav-item">
                     <a href="/barangjual"
                         class="nav-link {{ request()->is('barangjual','barangjual/*') ? 'active' : '' }}">
@@ -48,11 +48,18 @@
                         <p>KERANJANG</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="/historyorder"
                         class="nav-link {{ request()->is('historyorder','historyorder/*') ? 'active' : '' }}">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <p>Data Order</p>
+                    </a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="/historypemesanan"
+                        class="nav-link {{ request()->is('historypemesanan','historypemesanan/*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>HISTORI PEMESANAN</p>
                     </a>
                 </li>
                 @endif
@@ -112,6 +119,13 @@
                                 class="nav-link {{ request()->is('creatediskon','creatediskon/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-layer-group"></i>
                                 <p>TAMBAH DISKON</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/jenispayment"
+                                class="nav-link {{ request()->is('jenispayment','jenispayment/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>JENIS PAYMENT</p>
                             </a>
                         </li>
                     </ul>

@@ -7,6 +7,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DealerController;
+use App\Http\Controllers\PaymentController;
 
 
 
@@ -65,4 +66,16 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::get('/order', [DealerController::class, 'order']);
     Route::get('/aprove/{id}/menunggu', [DealerController::class, 'aprove']);
+    Route::get('/historypemesanan', [DealerController::class, 'historypemesanan']);
+    Route::get('/historypemesanan/{id}/update', [DealerController::class, 'historypemsananupdate']);
+    Route::get('/viewdetailorder/{id}', [DealerController::class, 'viewdetailorder']);
+    
+
+    Route::get('/jenispayment', [PaymentController::class, 'jenispayment']);
+    Route::get('/paymentaktiv/{id}/update', [PaymentController::class, 'paymentaktiv']);
+    Route::get('/paymentnon-aktiv/{id}/update', [PaymentController::class, 'paymentnonaktiv']);
+    Route::post('/jenispayment/create', [PaymentController::class, 'store']);
+    Route::post('/createuploadbuktibayar/{id}/update', [PaymentController::class, 'createuploadbuktibayar']);
+    Route::get('/uploadbuktibayar/{id}', [PaymentController::class, 'uploadbuktibayar']);
+
 });

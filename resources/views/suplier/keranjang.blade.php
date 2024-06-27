@@ -66,11 +66,11 @@
                     <tfoot>
                         <tr>
                             <td colspan="4" class="text-right font-weight-bold">total</td>
-                            
+
                             <td>
                                 @currency($totalHarga)
                             </td>
-                         
+
                         </tr>
                         <td colspan="5" class="text-right font-weight-bold">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cekoout">
@@ -127,6 +127,20 @@
                                                     <select name="diskon" class="form-control">
                                                         @foreach ($diskon as $d)
                                                         <option value="{{ $d->id }}">{{ $d->diskon }}% DISKON</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </tr>
+                                            <tr>
+                                                <div>
+                                                    <label>Jenis Payment</label>
+                                                    <select name="jenis_payment_id" class="form-control">
+
+                                                        @foreach ($jenis_payment as $jenis_payment)
+                                                        @if ($jenis_payment->status == 'aktiv')
+                                                        <option value="{{ $jenis_payment->id }}">
+                                                            {{ $jenis_payment->jenis_payment }}</option>
+                                                        @endif
                                                         @endforeach
                                                     </select>
                                                 </div>

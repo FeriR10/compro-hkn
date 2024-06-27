@@ -20,4 +20,12 @@ class Cekout extends Model
     {
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'payment_id', 'id');
+    }
+    public function diskon()
+    {
+        return $this->belongsTo(Diskon::class, 'diskon_id', 'id');
+    }
 }

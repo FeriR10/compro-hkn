@@ -34,16 +34,21 @@
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
                         <tr>
-
-                            <th>Kode Order</th>
+                            <th>Tanggal</th>
+                            <th>NO Order</th>
                             <th>Jumlah Barang</th>
                             <th>Total Harga</th>
+                            <th>Jenis Payment</th>
+                            <th>Status Payment</th>
                             <th>Status Kirim</th>
+                            <th>Bukti Transfer</th>
+                            <th>option</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($cekorders as $cek )
                         <tr>
+                            <th> {{$cek->created_at}} </th>
                             <th> {{$cek->id}} </th>
                             <th>
                                 <button type="button" class="badge badge-light" data-toggle="modal"
@@ -97,12 +102,13 @@
 
                             </th>
                             <th>@currency($cek->total_harga)</th>
-                            
+                            <th>{{$cek->payment->jenis_payment->jenis_payment ?? '-'}}</th>
+                            <th>{{$cek->payment->status ?? '-'}}</th>
                             <th>
                                 @if($cek->status == 'Aprove')
-                                <span class="badge badge-success">Aprove</span>
+                                <span class="badge badge-success">Delivered</span>
                                 @elseif($cek->status == 'Menunggu')
-                                <span class="badge badge-warning">Belum Selesai</span>
+                                <span class="badge badge-warning">On Process</span>
                                 <a href="historyorder/{{ $cek->id }}/update" class="badge badge-danger">Batal</a>
                                 @elseif($cek->status == 'Dibatalkan')
                                 <span class="badge badge-danger">Dibatalkan</span>
@@ -110,6 +116,9 @@
                                
                             </th>
                             
+
+                            <th>{{$cek->payment->bukti_transfer}} <a class="badge badge-primary" href="/uploadbuktibayar/{{ $cek->payment_id }}">Upload</a></th>
+                            <th><a class="badge badge-primary" href="/viewdetailorder/{{ $cek->id }}">View Detail</a></th>
                         </tr>
                         @endforeach
                     </tbody>

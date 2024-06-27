@@ -12,6 +12,8 @@ use App\Models\Cekout_aprove;
 use App\Models\Cekout;
 use App\Models\Riwayat;
 use Illuminate\Support\Facades\Session;
+use App\Models\Jenispayment;
+use App\Models\Payment;
 
 
 
@@ -35,12 +37,14 @@ class KeranjangController extends Controller
         $keranjang = Keranjang::where('users_id', $user->id)->get();
         $totalHarga = $keranjang->sum('total_harga');
         $diskon = Diskon::all();
+        $jenis_payment = Jenispayment::all();
         
         return view('suplier.keranjang',[
             'keranjang' => $keranjang,
             'cekouts' => $keranjang,
             'diskon' => $diskon,
-            'totalHarga' => $totalHarga
+            'totalHarga' => $totalHarga,
+            'jenis_payment' => $jenis_payment
            
         ]);
     }
@@ -100,12 +104,20 @@ class KeranjangController extends Controller
         $total_harga_setelah_diskon = $total_harga - $potongan_harga;
 
         // add new to cekout table
+        $payment = new Payment();
+        $payment->status = "belum di transfer";
+        $payment->jenis_payment_id = $request->jenis_payment_id;
+        $payment->users_id = auth()->user()->id;
+        $payment->save();
+
         $cekout = new Cekout();
         $cekout->users_id = auth()->user()->id;
         $cekout->diskon_id = $request->diskon;
         $cekout->total_harga = $total_harga_setelah_diskon ;
         $cekout->status = 'Menunggu';
+        $cekout->payment_id = $payment->id;
         $cekout->save();
+        
         
         // foreach save to riwayat table
         foreach ($keranjang as $key => $value) {
