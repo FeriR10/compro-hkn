@@ -98,7 +98,7 @@ class BarangController extends Controller
         $barang->update();
 
         Session::flash('status', 'success');
-        Session::flash('message', 'Edit kontak sukses');
+        Session::flash('message', 'Edit Barang sukses');
         return redirect('/barang');
     }
 

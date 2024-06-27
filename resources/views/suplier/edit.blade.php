@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group">
                         <label>Kategori</label>
-                        <select name="kategori_id" class="form-control">
+                        <select name="id_kategori" class="form-control">
                             @foreach($kategoris as $barangkategori)
                             <option @if($barang->kategori_id == $barangkategori->id) selected @endif value="{{$barangkategori->id}}">{{$barangkategori->kategori_barang}}</option>
                             @endforeach
