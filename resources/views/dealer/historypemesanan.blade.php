@@ -117,7 +117,7 @@
                             </th>
                             
 
-                            <th>{{$cek->payment->bukti_transfer}} <a class="badge badge-primary" href="/uploadbuktibayar/{{ $cek->payment_id }}">Upload</a></th>
+                            <th>{{$cek->payment->bukti_transfer ?? '-'}} <a class="badge badge-primary" href="/uploadbuktibayar/{{ $cek->payment_id }}">Upload</a></th>
                             <th><a class="badge badge-primary" href="/viewdetailorder/{{ $cek->id }}">View Detail</a></th>
                         </tr>
                         @endforeach
