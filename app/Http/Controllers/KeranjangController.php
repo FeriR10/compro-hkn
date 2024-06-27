@@ -159,9 +159,15 @@ class KeranjangController extends Controller
         $cekorder = Cekout::find($id);
         $cekorder->status = "Dibatalkan";
         $cekorder->update();
+        //penamabahan qty pada tabel barang saat update status
+        foreach ($cekorder->riwayat as $key => $value) {
+            $barang = Barang::find($value->barang_id);
+            $barang->qty = $barang->qty + $value->qty;
+            $barang->update();
+        }
         Session::flash('status', 'success');
         Session::flash('message', 'Pesanan di Batalkan');
-        return redirect('/historyorder');
+        return redirect('/historypemesanan');
     }
     
 }

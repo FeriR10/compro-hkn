@@ -65,9 +65,10 @@ class DealerController extends Controller
         $cekorder = Cekout::find($id);
         $cekorder->status = "Dibatalkan";
         $cekorder->update();
+        
         Session::flash('status', 'success');
         Session::flash('message', 'Pesanan di Batalkan');
-        return redirect('/historyorder');
+        return redirect('/historypemesanan');
     }
     public function viewdetailorder($id)
     {
