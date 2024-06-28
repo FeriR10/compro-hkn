@@ -173,15 +173,17 @@
                                 <?php endif; ?>
                             </th>
                             <th>
-                                @if ($cek->payment && $cek->payment->status == 'Belum Di Transfer')
-                                <a href="/aprove/{{$cek->id}}/payment" class="btn btn-warning btn-sm">Tandai Jika Sudah Transfer</a>
-                                @elseif ($cek->payment && $cek->payment->status == 'Berhasil Bayar')
-                                <a href="" class="badge badge-success">Berhasil Di Bayar</a>
-                                @else
-                                <span>Tidak Tersedia</span>
+                                @if ($cek->status == 'Menunggu' || $cek->status == 'Aprove')
+                                    @if ($cek->payment && $cek->payment->status == 'Belum Di Transfer')
+                                    <a href="/aprove/{{$cek->id}}/payment" class="btn btn-warning btn-sm">Tandai Jika Sudah Transfer</a>
+                                    @elseif ($cek->payment && $cek->payment->status == 'Berhasil Bayar')
+                                    <a href="" class="badge badge-success">Berhasil Di Bayar</a>
+                                    @else
+                                    <span>Tidak Tersedia</span>
+                                    @endif
+                                @elseif($cek->status == 'Dibatalkan')
+                                <span class="badge badge-danger">Transaksi dibatalkan</span>
                                 @endif
-
-
                             </th>
 
                         </tr>
