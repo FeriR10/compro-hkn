@@ -6,7 +6,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        
+
     </section>
 
     <!-- Main content -->
@@ -15,9 +15,9 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">MENU<strong></strong></h3>
+                <h3 class="card-title">Data Barang<strong></strong></h3>
                 <div class="card-tools">
-                    
+
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -32,8 +32,8 @@
                 </div>
                 @endif
                 @if(session('error'))
-        <p>{{ session('error') }}</p>
-    @else
+                <p>{{ session('error') }}</p>
+                @else
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
                         <tr>
@@ -46,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                       
+
                         @foreach($cekorder->riwayat as $cek )
                         <tr>
                             <th> {{$cek->barang->kode_barang}} </th>
@@ -54,25 +54,77 @@
                             <th> {{$cek->qty}} </th>
                             <th> @currency ($cek->harga_satuan) </th>
                             <th> @currency (($cek->harga_satuan * $cek->qty) * $cekorder->diskon->persen) </th>
-                            <th> @currency (($cek->harga_satuan * $cek->qty)-($cek->harga_satuan * $cek->qty) * $cekorder->diskon->persen)</th>
-                            </tr>
-                            
+                            <th> @currency (($cek->harga_satuan * $cek->qty)-($cek->harga_satuan * $cek->qty) *
+                                $cekorder->diskon->persen)</th>
+                        </tr>
+
                         @endforeach
-                       
+
                     </tbody>
 
                 </table>
-                
+
                 @endif
             </div>
             <!-- /.card-body -->
-            
-            <!-- /.card-footer-->
-        </div>
-        <!-- /.card -->
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-sm">
+                        <table id="example1" class="table table-bordered table-striped ">
+                            <thead>
+                                <tr style="width: 50%;">
+                                    <th>Total Harga</th>
+                                    <th>@currency ($totalharga)</th>
+                                </tr>
+                                <tr>
+                                    <th>Diskon</th>
+                                    <th>@currency ($totalharga * $cekorder->diskon->persen)</th>
+                                </tr>
+                                <tr>
+                                    <th>PPN</th>
+                                    <th>-</th>
+                                </tr>
+                                <tr>
+                                    <th>Total Bayar</th>
+                                    <th>@currency (($totalharga)-($totalharga * $cekorder->diskon->persen))</th>
+                                </tr>
+                            </thead>
 
-    </section>
-    <!-- /.content -->
+
+
+                        </table>
+                    </div>
+                    <div class="col-sm text-center">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="badge badge-success">
+                                        <h5>Bukti Bayar</h5>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if ($bukti == null)
+                                    <h5 class="text-danger">Bukti Bayar Tidak ada</h5>
+                                    @else
+                                    <img src="{{ asset('storage/' . $bukti) }}" width="200px">
+                                    @endif
+                                    
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-footer-->
+</div>
+<!-- /.card -->
+
+</section>
+<!-- /.content -->
 </div>
 
 @endsection

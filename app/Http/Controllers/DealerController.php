@@ -7,6 +7,7 @@ use App\Models\Cekout;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Models\Payment;
+use App\Models\Riwayat;
 
 
 
@@ -73,14 +74,18 @@ class DealerController extends Controller
     public function viewdetailorder($id)
     {
         $cekorder = Cekout::where('id', $id)->first();
-        // $barang = Barang::find($cekorder->barang_id);
-        // $diskon = Diskon::find($cekorder->diskon_id);
         if (is_null($cekorder)) {
             return redirect()->back()->with('error', 'Order not found');
         }
+        $totalharga = Riwayat::where('cekout_id', $id)->sum('total_harga');
+        //pengambilan bukti_bayar pada table payment
+        $bukti = Payment::where('id', $cekorder->payment_id)->value('bukti_bayar');
+
         
         return view('dealer.viewdetailorder',[
-            'cekorder' => $cekorder
+            'cekorder' => $cekorder,
+            'totalharga' => $totalharga,
+            'bukti' => $bukti
         ]);
 
     }

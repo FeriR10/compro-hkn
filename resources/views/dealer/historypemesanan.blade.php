@@ -17,7 +17,7 @@
             <div class="card-header">
                 <h3 class="card-title">MENU<strong></strong></h3>
                 <div class="card-tools">
-                    
+
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -40,18 +40,19 @@
                             <th>Total Harga</th>
                             <th>Jenis Payment</th>
                             <th>Status Payment</th>
-                            <th>Status Kirim</th>
                             <th>Bukti Transfer</th>
-                            <th>option</th>
+                            <th>Status Kirim</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($cekorders as $cek )
                         <tr>
-                        <th> {{ $cek->created_at->format('d-m-Y') }} </th>
+                            <th> {{ $cek->created_at->format('d-m-Y') }} </th>
 
                             <th> {{$cek->id}} </th>
-                            <th>
+                            <th><a class="badge badge-primary" href="/viewdetailorder/{{ $cek->id }}">View Detail</a>
+                            </th>
+                            <!-- <th>
                                 <button type="button" class="badge badge-light" data-toggle="modal"
                                     data-target="#riwayat-{{$cek->id}}">
                                     Lihat {{$cek->riwayat->count()}} barang
@@ -101,10 +102,14 @@
                                                     </div>
                                                 </div>
 
-                            </th>
+                            </th> -->
                             <th>@currency($cek->total_harga)</th>
                             <th>{{$cek->payment->jenis_payment->jenis_payment ?? '-'}}</th>
                             <th>{{$cek->payment->status ?? '-'}}</th>
+
+                            <th>{{$cek->payment->bukti_transfer ?? ''}} <a class="badge badge-primary"
+                                    href="/uploadbuktibayar/{{ $cek->payment_id }}">Upload</a></th>
+
                             <th>
                                 @if($cek->status == 'Aprove')
                                 <span class="badge badge-success">Delivered</span>
@@ -114,12 +119,10 @@
                                 @elseif($cek->status == 'Dibatalkan')
                                 <span class="badge badge-danger">Dibatalkan</span>
                                 @endif
-                               
-                            </th>
-                            
 
-                            <th>{{$cek->payment->bukti_transfer ?? ''}} <a class="badge badge-primary" href="/uploadbuktibayar/{{ $cek->payment_id }}">Upload</a></th>
-                            <th><a class="badge badge-primary" href="/viewdetailorder/{{ $cek->id }}">View Detail</a></th>
+                            </th>
+
+
                         </tr>
                         @endforeach
                     </tbody>
