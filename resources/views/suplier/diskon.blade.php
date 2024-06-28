@@ -15,7 +15,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">MENU<strong></strong></h3>
+                <h3 class="card-title">Menu Diskon<strong></strong></h3>
                 <div class="card-tools">
                     <a href="/creatediskon" class="btn btn-outline-secondary btn-sm">
                         Tambah
