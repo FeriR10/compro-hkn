@@ -54,7 +54,7 @@
                             <th> {{$cek->qty}} </th>
                             <th> @currency ($cek->harga_satuan) </th>
                             <th> @currency (($cek->harga_satuan * $cek->qty) * $cekorder->diskon->persen) </th>
-                            <th> @currency ($cek->harga_satuan * $cek->qty)</th>
+                            <th> @currency (($cek->harga_satuan * $cek->qty)-($cek->harga_satuan * $cek->qty) * $cekorder->diskon->persen)</th>
                             </tr>
                             
                         @endforeach

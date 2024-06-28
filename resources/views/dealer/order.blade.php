@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                             </th>
-                            <th> {{$cek->created_at}} </th>
+                            <th> {{ $cek->created_at->format('Y-m-d') }} </th>
                             <th>
                                 <button type="button" class="badge badge-light" data-toggle="modal"
                                     data-target="#riwayat-{{$cek->id}}">

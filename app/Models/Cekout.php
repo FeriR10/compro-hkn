@@ -11,7 +11,7 @@ class Cekout extends Model
 
     protected $guarded = ['id'];
     protected $table = 'cekout';
-
+    public $timestamps = true;
     public function riwayat()
     {
         return $this->hasMany(Riwayat::class, 'cekout_id', 'id');

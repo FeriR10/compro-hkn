@@ -48,7 +48,8 @@
                     <tbody>
                         @foreach($cekorders as $cek )
                         <tr>
-                            <th> {{$cek->created_at}} </th>
+                        <th> {{ $cek->created_at->format('d-m-Y') }} </th>
+
                             <th> {{$cek->id}} </th>
                             <th>
                                 <button type="button" class="badge badge-light" data-toggle="modal"

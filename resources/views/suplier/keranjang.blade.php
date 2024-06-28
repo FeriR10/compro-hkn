@@ -37,7 +37,6 @@
                             <th scope="col">Barang</th>
                             <th>Harga Satuan</th>
                             <th>QTY</th>
-                            <th>Harga Satuan</th>
                             <th>Total Harga</th>
                             <th>option</th>
                         </tr>
@@ -49,7 +48,6 @@
                             <td>{{ $keranjang->barang->nama_barang }}</td>
                             <td>@currency( $keranjang->barang->harga )</td>
                             <td> {{ $keranjang->qty }}</td>
-                            <td>@currency( $keranjang->harga_satuan )</td>
                             <td>@currency( $keranjang->qty * $keranjang->barang->harga )</td>
 
                             <td>
@@ -111,7 +109,7 @@
 
                                             <td>{{ $cekout->barang->nama_barang }}</td>
                                             <td>{{ $cekout->qty }}</td>
-                                            <td>@currency( $cekout->qty * $keranjang->barang->harga )</td>
+                                            <td>@currency( $cekout->qty * $cekout->barang->harga )</td>
 
                                         </tr>
                                         @endforeach
@@ -149,7 +147,9 @@
                                         <tr>
                                             <td colspan="2" class="text-right font-weight-bold">total</td>
 
-
+                                            <td>
+                                @currency($totalHarga)
+                                            </td>
                                         </tr>
                                     </tfoot>
                                 </table>

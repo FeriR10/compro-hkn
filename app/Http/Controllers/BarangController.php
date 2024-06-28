@@ -46,7 +46,26 @@ class BarangController extends Controller
         $barangs->id_kategori = $request->id_kategori;
         $barangs->kode_barang = $request->kode_barang;
         $barangs->qty = $request->qty;
-        $barangs->harga = $request->harga;
+        if ($request->harga !== null) {
+            // Mengganti titik dengan kosong untuk konversi ke integer
+            $harga = (int)str_replace('.', '', $request->harga);
+            
+            // Debugging: Cek nilai setelah konversi
+            var_dump($harga);
+        
+            // Set nilai harga pada objek $barang
+            $barangs->harga = $harga;
+            
+            // Simpan objek $barang ke database
+            $barangs->save();
+        } else {
+            // Tindakan jika $request->harga null, misalnya memberikan nilai default atau melempar exception
+            $barangs->harga = 0; // Nilai default
+            // atau
+            // throw new Exception('Harga tidak boleh null');
+            $barangs->save();
+        }
+        
         if($request->hasfile('thumbnail')) {
             $file = $request->file('thumbnail');
             $path = Storage::disk('public')->put('images/barang', $file);
@@ -84,9 +103,28 @@ class BarangController extends Controller
         $barang = Barang::find($id);
         $barang->nama_barang = $request->nama_barang;
         $barang->id_kategori = $request->id_kategori;
-        $barang->kode_barang = $request->kode_barang;
+        if ($request->harga !== null) {
+            // Mengganti titik dengan kosong untuk konversi ke integer
+            $harga = (int)str_replace('.', '', $request->harga);
+            
+            // Debugging: Cek nilai setelah konversi
+            var_dump($harga);
+        
+            // Set nilai harga pada objek $barang
+            $barang->harga = $harga;
+            
+            // Simpan objek $barang ke database
+            $barang->save();
+        } else {
+            // Tindakan jika $request->harga null, misalnya memberikan nilai default atau melempar exception
+            $barang->harga = 0; // Nilai default
+            // atau
+            // throw new Exception('Harga tidak boleh null');
+            $barang->save();
+        }
         $barang->qty = $request->qty;
-        $barang->harga = $request->harga;
+        $barang->harga = (int) str_replace('.', '', $request->harga);
+
         if($request->hasFile('thumbnail')){
             if($barang->thumbnail){
                 Storage::disk('public')->delete($barang->thumbnail);

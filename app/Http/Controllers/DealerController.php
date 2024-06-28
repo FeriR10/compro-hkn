@@ -14,7 +14,7 @@ class DealerController extends Controller
 {
     public function order()
     {
-        $cekorders = Cekout::get();
+        $cekorders = Cekout::orderBy('created_at', 'desc')->get();
         return view('dealer.order',[
             'cekorders' => $cekorders
         ]);
@@ -51,8 +51,8 @@ class DealerController extends Controller
         // $cekorders = Cekout::get()->riwayat()->where('users_id', Auth::user()->id)->get();
 
         // $cekorders = Cekout get where riwayat users_id = Auth::user()->id
+        // $cekorders = Cekout::where('users_id', Auth::user()->id)->get();
         $cekorders = Cekout::where('users_id', Auth::user()->id)->get();
-
 
         return view('dealer.historypemesanan',[
             'cekorders' => $cekorders
