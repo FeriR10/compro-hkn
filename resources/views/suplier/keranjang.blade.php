@@ -42,21 +42,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($keranjang as $keranjang)
+                        @forelse($keranjang as $keranjang)
                         <tr>
 
                             <td>{{ $keranjang->barang->nama_barang }}</td>
                             <td>@currency( $keranjang->barang->harga )</td>
                             <td> {{ $keranjang->qty }}</td>
                             <td>@currency( $keranjang->qty * $keranjang->barang->harga )</td>
-
                             <td>
                                 <a href="/keranjang/kurang/{{ $keranjang->id }}" class="btn btn-danger">-</a>
                                 <a href="/keranjang/tambah/{{ $keranjang->id }}" class="btn btn-primary">+</a>
                             </td>
-                            <!-- <td><a href="/keranjang/delete/{{ $keranjang->id }}">delete</a></td> -->
+                            @empty
+                                        
+                            <td colspan="5">Tidak ada barang untuk cekout.</td>
+                                        
                         </tr>
-                        @endforeach
+                        @endforelse
                     </tbody>
 
                     <tfoot>
@@ -104,15 +106,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($cekouts as $cekout)
+                                        @forelse($cekouts as $cekout)
                                         <tr>
 
                                             <td>{{ $cekout->barang->nama_barang }}</td>
                                             <td>{{ $cekout->qty }}</td>
                                             <td>@currency( $cekout->qty * $cekout->barang->harga )</td>
-
+                                            @empty
+                                        <tr>
+                                            <td colspan="3">Tidak ada barang untuk cekout.</td>
                                         </tr>
-                                        @endforeach
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                     <h2>Diskon yang Tersedia</h2>
                                     <table border="1">
@@ -157,7 +162,11 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Bayar</button>
+                                    @if($cekouts->isEmpty())
+        <button type="submit" class="btn btn-primary" disabled>Bayar</button>
+        @else
+        <button type="submit" class="btn btn-primary">Bayar</button>
+        @endif
                                 </div>
                             </form>
                         </div>
