@@ -53,7 +53,7 @@
                 
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
-                        <tr>
+                        <tr class="highlight">
                             <th>Kategori</th>
                             <th>Aksi</th>
                         </tr>

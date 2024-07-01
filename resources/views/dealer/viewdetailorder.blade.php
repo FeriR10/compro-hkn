@@ -9,19 +9,22 @@
 
     </section>
 
+
     <!-- Main content -->
     <section class="content">
 
         <!-- Default box -->
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Data Barang<strong></strong></h3>
-                <div class="card-tools">
+            <div class="card-header row">
+                <div class="col-md-4">
+                    <h3 class="card-title">Data Barang <strong>{{$cekorder->created_at->format('d-m-Y')}}</strong></h3>
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <p class="card-title">Status : <strong>{{$cekorder->status}}</strong></p>
+                </div>
+                <div class="col-md-4 text-right">
+                    <h3 class="card-title float-right">No Order : <strong>{{$cekorder->id}}</strong></h3>
 
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
                 </div>
             </div>
             <div class="card-body">
@@ -34,9 +37,9 @@
                 @if(session('error'))
                 <p>{{ session('error') }}</p>
                 @else
-                <table id="example1" class="table table-bordered table-striped" style="text-align: center">
+                <table id="example2" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
-                        <tr>
+                        <tr class="highlight">
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>
                             <th>QTY</th>
@@ -70,7 +73,7 @@
             <div class="card-footer">
                 <div class="row">
                     <div class="col-sm">
-                        <table id="example1" class="table table-bordered table-striped ">
+                        <table id="" class="table table-bordered table-striped ">
                             <thead>
                                 <tr style="width: 50%;">
                                     <th>Total Harga</th>
@@ -84,7 +87,7 @@
                                     <th>PPN</th>
                                     <th>-</th>
                                 </tr>
-                                <tr>
+                                <tr class="highlight">
                                     <th>Total Bayar</th>
                                     <th>@currency (($totalharga)-($totalharga * $cekorder->diskon->persen))</th>
                                 </tr>
@@ -93,6 +96,17 @@
 
 
                         </table>
+                        <table id="" class="table table-bordered table-striped ">
+                            <tr>
+                                <th>Alamat Kirim</th>
+                                <th>{{$alamat->alamat_kirim ?? '-'}}</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm">
+                        <!--sapace-->
+
+                        <!--sapace-->
                     </div>
                     <div class="col-sm text-center">
                         <table>
@@ -104,13 +118,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="">
                                     @if ($bukti == null)
                                     <h5 class="text-danger">Bukti Bayar Tidak ada</h5>
                                     @else
                                     <img src="{{ asset('storage/' . $bukti) }}" width="200px">
                                     @endif
-                                    
+
                                 </td>
                             </tr>
                         </table>

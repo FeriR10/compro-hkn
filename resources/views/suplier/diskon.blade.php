@@ -17,25 +17,34 @@
             <div class="card-header">
                 <h3 class="card-title">Menu Diskon<strong></strong></h3>
                 <div class="card-tools">
-                    <a href="/creatediskon" class="btn btn-outline-secondary btn-sm">
-                        Tambah
-                    </a>
+                    
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>
                     </button>
                 </div>
+                
             </div>
             <div class="card-body">
-                @if (Session::has('status'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
-                @endif
+                <form action="/creatediskon-process" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="form-group">
+                        <label>DISKON</label>
+                        <input type="text" name="diskon" class="form-control" placeholder="INPUTKAN NOMERNYA SAJA. EX : 20 "
+                            value="">
+
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body">
+                
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
-                        <tr>
+                        <tr class="highlight">
                             <th>Diskon</th>
                         
                             <th>Action</th>

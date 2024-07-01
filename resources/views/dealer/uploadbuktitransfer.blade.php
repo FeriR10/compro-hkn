@@ -37,12 +37,6 @@
                         <!-- form fields go here -->
                         @csrf
 
-                        <div class="form-group">
-                            <label for="">Total Harga</label>x
-                            <input type="text" class="form-control" value="test" readonly>
-
-                        </div>
-
                         <div>
                             <label>Upload Bukti Transfer</label>
                             {{-- <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt=""> --}}

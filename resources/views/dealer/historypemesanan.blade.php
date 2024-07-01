@@ -33,7 +33,7 @@
                 @endif
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
-                        <tr>
+                        <tr class="highlight">
                             <th>Tanggal</th>
                             <th>NO Order</th>
                             <th>Jumlah Barang</th>
@@ -47,71 +47,16 @@
                     <tbody>
                         @foreach($cekorders as $cek )
                         <tr>
-                            <th> {{ $cek->created_at->format('d-m-Y') }} </th>
-
-                            <th> {{$cek->id}} </th>
-                            <th><a class="badge badge-primary" href="/viewdetailorder/{{ $cek->id }}">View Detail</a>
-                            </th>
-                            <!-- <th>
-                                <button type="button" class="badge badge-light" data-toggle="modal"
-                                    data-target="#riwayat-{{$cek->id}}">
-                                    Lihat {{$cek->riwayat->count()}} barang
-                                </button>
-                                                <div class="modal fade" id="riwayat-{{$cek->id}}" tabindex="-1"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Detail Barang</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <table id="example1" class="table table-bordered table-striped"
-                                                                    style="text-align: center">
-                                                                    <thead>
-                                                                        <tr>
-
-                                                                            <th>Kode Barang</th>
-                                                                            <th>Nama Barang</th>
-                                                                            <th>QTY</th>
-                                                                            <th>Harga Satuan</th>
-                                                                            <th>Total Harga</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @foreach($cek->riwayat as $riwayat)
-                                                                        <tr>
-                                                                            <th> {{$riwayat->id}} </th>
-                                                                            <th> {{$riwayat->barang->nama_barang}} </th>
-                                                                            <th> {{$riwayat->qty}} </th>
-                                                                            <th> @currency($riwayat->harga_satuan)</th>
-                                                                            <th> @currency($riwayat->total_harga)</th>
-                                                                        </tr>
-                                                                        @endforeach
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                            </th> -->
-                            <th>@currency($cek->total_harga)</th>
-                            <th>{{$cek->payment->jenis_payment->jenis_payment ?? '-'}}</th>
-                            <th>{{$cek->payment->status ?? '-'}}</th>
-
-                            <th>{{$cek->payment->bukti_transfer ?? ''}} <a class="badge badge-primary"
-                                    href="/uploadbuktibayar/{{ $cek->payment_id }}">Upload</a></th>
-
-                            <th>
-                                @if($cek->status == 'Aprove')
+                            <td>{{ $cek->created_at->format('d-m-Y') }}</td>
+                            <td>{{$cek->id}}</td>
+                            <td><a class="badge badge-primary" href="/viewdetailorder/{{ $cek->id }}">View Detail</a></td>
+                            <td>@currency($cek->total_harga)</td>
+                            <td>{{$cek->payment->jenis_payment->jenis_payment ?? '-'}}</td>
+                            <td>{{$cek->payment->status ?? '-'}}</td>
+                            <td>{{$cek->payment->bukti_transfer ?? ''}} <a class="badge badge-primary"
+                                    href="/uploadbuktibayar/{{ $cek->payment_id }}">Upload</a></td>
+                            <td>
+                            @if($cek->status == 'Aprove')
                                 <span class="badge badge-success">Delivered</span>
                                 @elseif($cek->status == 'Menunggu')
                                 <span class="badge badge-warning">On Process</span>
@@ -119,10 +64,7 @@
                                 @elseif($cek->status == 'Dibatalkan')
                                 <span class="badge badge-danger">Dibatalkan</span>
                                 @endif
-
-                            </th>
-
-
+                            </td>       
                         </tr>
                         @endforeach
                     </tbody>

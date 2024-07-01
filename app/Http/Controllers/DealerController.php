@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Models\Payment;
 use App\Models\Riwayat;
+use App\Models\Profileuser;
 
 
 
@@ -53,11 +54,9 @@ class DealerController extends Controller
 
         // $cekorders = Cekout get where riwayat users_id = Auth::user()->id
         // $cekorders = Cekout::where('users_id', Auth::user()->id)->get();
-        $cekorders = Cekout::where('users_id', Auth::user()->id)->get();
-
-        return view('dealer.historypemesanan',[
-            'cekorders' => $cekorders
-        ]);
+        $cekorders = Cekout::where('users_id', auth()->user()->id)->get();
+        // dd($cekorders);
+        return view('dealer.historypemesanan', compact('cekorders'));
     }
     
     //update status historyorderupdate
@@ -80,12 +79,13 @@ class DealerController extends Controller
         $totalharga = Riwayat::where('cekout_id', $id)->sum('total_harga');
         //pengambilan bukti_bayar pada table payment
         $bukti = Payment::where('id', $cekorder->payment_id)->value('bukti_bayar');
-
+        $alamat = Profileuser::where('users_id',  $cekorder->users_id)->first();
         
         return view('dealer.viewdetailorder',[
             'cekorder' => $cekorder,
             'totalharga' => $totalharga,
-            'bukti' => $bukti
+            'bukti' => $bukti,
+            'alamat' => $alamat
         ]);
 
     }
