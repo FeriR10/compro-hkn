@@ -114,13 +114,13 @@
                                 <p>DISKON</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/creatediskon"
                                 class="nav-link {{ request()->is('creatediskon','creatediskon/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-layer-group"></i>
                                 <p>TAMBAH DISKON</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="/jenispayment"
                                 class="nav-link {{ request()->is('jenispayment','jenispayment/*') ? 'active' : '' }}">
