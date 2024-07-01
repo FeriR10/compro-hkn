@@ -28,9 +28,11 @@
     font-family:sans-serif; 
 }
 .highlight {
-        background-color: #343a40;
-        color: white;
-    }
+    background-color: #3A7A99; /* Dark Cerulean */
+color: white;
+box-shadow: 0 0 8px rgba(0, 0, 255, 0.7); /* Subtle glowing effect */
+}
+
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -106,7 +108,7 @@
                 "lengthChange": false,
                 "searching": false,
                 "ordering": true,
-                "info": true,
+                "info": false,
                 "autoWidth": false,
                 "responsive": true,
             });
