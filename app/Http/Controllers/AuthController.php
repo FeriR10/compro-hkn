@@ -21,34 +21,39 @@ class AuthController extends Controller
     }
 
     public function loginProcess(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+{
+    // Validasi input login
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+    // Percobaan otentikasi
+    if (Auth::attempt($credentials)) {
+        // Regenerasi sesi
+        $request->session()->regenerate();
 
-            if (Auth::user()->role == "karyawan") {
-
-                Auth::logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-
-                Session::flash('status', 'failed');
-                Session::flash('message', 'Akun anda belum disetujui admin, hubungi admin untuk konfirmasi akun anda!');
-                return redirect('/login');
-            }
- 
-            return redirect()->intended('/barangjual');
+        // Cek role pengguna
+        if (Auth::user()->role->role === 'dealer') {
+            // Redirect ke halaman /homepage jika role adalah dealer
+            return redirect('/homepage');
         }
-
-        Session::flash('status', 'failed');
-        Session::flash('message', 'Login Wrong!');
-
-        return redirect('/login');
+        elseif (Auth::user()->role->role === 'admin') {
+            // Redirect ke halaman /admin jika role adalah admin
+            return redirect('/dashboard');
+        }
+        // Redirect ke halaman yang diinginkan jika role bukan dealer
+        return redirect()->intended('/barangjual');
     }
+
+    // Flash pesan jika login gagal
+    Session::flash('status', 'failed');
+    Session::flash('message', 'Login Wrong!');
+
+    // Redirect ke halaman login jika otentikasi gagal
+    return redirect('/login');
+}
+
 
     public function registerProcess(Request $request)
     {

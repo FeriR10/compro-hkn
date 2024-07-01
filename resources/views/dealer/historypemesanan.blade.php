@@ -58,9 +58,9 @@
                             <td>
                             @if ($cek->status == 'Menunggu' || $cek->status == 'DP lunas' || $cek->status == 'Lunas')
                                     @if ($cek->payment && $cek->payment->status == 'Belum Di Transfer')
-                                        <a href="/aprove/{{$cek->id}}/payment" class="btn btn-warning btn-sm">On Process</a>
+                                        <a href="" class="badge badge-warning btn-sm">On Process</a>
                                     @elseif ($cek->payment && $cek->payment->status == 'Berhasil Bayar')
-                                    <a href="" class="badge badge-success">Berhasil Di Bayar</a>
+                                    <a href="" class="badge badge-success">Delivered</a>
                                     @else
                                     <span></span>
                                     @endif

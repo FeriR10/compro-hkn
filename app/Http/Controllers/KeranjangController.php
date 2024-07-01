@@ -92,7 +92,7 @@ class KeranjangController extends Controller
         $keranjang = Keranjang::where('users_id', Auth::user()->id)->get();
 
         $diskon_id = $request->diskon;
-        $total_harga = $keranjang->sum('harga');
+        $total_harga = $keranjang->sum('harga_satuan');
         $potongan_harga = 0;
         if (!empty($diskon_id)) {
         $diskon = Diskon::find($diskon_id);
@@ -113,7 +113,7 @@ class KeranjangController extends Controller
         $cekout = new Cekout();
         $cekout->users_id = auth()->user()->id;
         $cekout->diskon_id = $request->diskon;
-        $cekout->total_harga = $total_harga_setelah_diskon ;
+        $cekout->total_harga = $total_harga_setelah_diskon;
         $cekout->status = 'Menunggu';
         $cekout->payment_id = $payment->id;
         $cekout->save();
@@ -137,7 +137,7 @@ class KeranjangController extends Controller
             $barang->qty = $barang->qty - $value->qty;
             $barang->update();
         }
-
+        
         return redirect('/historypemesanan');
     }
     public function historyorder()
