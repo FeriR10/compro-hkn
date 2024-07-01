@@ -51,14 +51,14 @@
                             <td>{{$item->total_harga}}</td>
                             <td>{{$item->payment->jenis_payment->jenis_payment ?? ''}}</td>
                             <td>
-                                {{$item->payment->status ?? ''}}
+                                {{$item->status ?? ''}}
                             </td>
-                            <td> @if ($item->status == 'Lunas')
-                                <span class="badge badge-success">Delivered</span>
-                                @elseif($item->status == 'DP lunas')
-                                <span class="badge badge-success">On Process</span>
-                                @elseif($item->status == 'Menunggu')
-                                <span class="badge badge-warning">On Process</span>
+                            <td>@if ($item->status == 'Menunggu' || $item->status == 'DP lunas' || $item->status == 'Lunas')
+                                    @if ($item->payment->status == 'Berhasil Bayar')
+                                    <span class="badge badge-success">Delivered</span>
+                                    @elseif($item->payment->status == 'Belum Di Transfer')
+                                    <span class="badge badge-warning">On Process</span>
+                                    @endif
                                 @elseif($item->status == 'Dibatalkan')
                                 <span class="badge badge-danger">Dibatalkan</span>
                                 @endif</td>
