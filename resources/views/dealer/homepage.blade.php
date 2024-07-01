@@ -15,7 +15,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">History Transaksi<strong></strong></h3>
+                <h3 class="card-title">Home Page<strong></strong></h3>
                 <div class="card-tools">
 
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
@@ -36,38 +36,33 @@
                         <tr class="highlight">
                             <th>Tanggal</th>
                             <th>NO Order</th>
-                            <th>Jumlah Barang</th>
-                            <th>Total Harga</th>
+                            <th>Jumlah </th>
                             <th>Jenis Payment</th>
                             <th>Status Payment</th>
-                            <th>Bukti Transfer</th>
                             <th>Status Kirim</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($cekorders as $cek )
+                        @foreach($home as $item)
+
                         <tr>
-                            <td>{{ $cek->created_at->format('d-m-Y') }}</td>
-                            <td>{{$cek->id}}</td>
-                            <td><a class="badge badge-primary" href="/viewdetailorder/{{ $cek->id }}">View Detail</a></td>
-                            <td>@currency($cek->total_harga)</td>
-                            <td>{{$cek->payment->jenis_payment->jenis_payment ?? '-'}}</td>
-                            <td>{{$cek->payment->status ?? '-'}}</td>
-                            <td>{{$cek->payment->bukti_transfer ?? ''}} <a class="badge badge-primary"
-                                    href="/uploadbuktibayar/{{ $cek->payment_id }}">Upload</a></td>
+                            <td>{{$item->created_at}}</td>
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->total_harga}}</td>
+                            <td>{{$item->payment->jenis_payment->jenis_payment ?? ''}}</td>
                             <td>
-                            @if ($cek->status == 'Menunggu' || $cek->status == 'DP lunas' || $cek->status == 'Lunas')
-                                    @if ($cek->payment && $cek->payment->status == 'Belum Di Transfer')
-                                        <a href="/aprove/{{$cek->id}}/payment" class="btn btn-warning btn-sm">On Process</a>
-                                    @elseif ($cek->payment && $cek->payment->status == 'Berhasil Bayar')
-                                    <a href="" class="badge badge-success">Berhasil Di Bayar</a>
-                                    @else
-                                    <span></span>
-                                    @endif
-                                @elseif($cek->status == 'Dibatalkan')
-                                <span class="badge badge-danger">Transaksi dibatalkan</span>
-                                @endif
-                            </td>       
+                                {{$item->payment->status ?? ''}}
+                            </td>
+                            <td> @if ($item->status == 'Lunas')
+                                <span class="badge badge-success">Delivered</span>
+                                @elseif($item->status == 'DP lunas')
+                                <span class="badge badge-success">On Process</span>
+                                @elseif($item->status == 'Menunggu')
+                                <span class="badge badge-warning">On Process</span>
+                                @elseif($item->status == 'Dibatalkan')
+                                <span class="badge badge-danger">Dibatalkan</span>
+                                @endif</td>
+                            
                         </tr>
                         @endforeach
                     </tbody>

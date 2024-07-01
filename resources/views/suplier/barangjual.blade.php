@@ -31,7 +31,7 @@
                     {{Session::get('message')}}
                 </div>
                 @endif
-                <form action="/keranjang/store" method="POST">
+                <form  action="/keranjang/store" method="POST">
                     @csrf
                     <div class="row">
                         @foreach($barangs as $barang)

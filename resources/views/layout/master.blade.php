@@ -106,7 +106,7 @@ box-shadow: 0 0 8px rgba(0, 0, 255, 0.7); /* Subtle glowing effect */
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
-                "searching": false,
+                "searching": true,
                 "ordering": true,
                 "info": false,
                 "autoWidth": false,

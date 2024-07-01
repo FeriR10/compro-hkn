@@ -34,6 +34,13 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                @if (auth()->user()->role_id == 2 || auth()->user()->role_id == 1)
+               <li class="nav-item">
+                    <a href="/homepage"
+                        class="nav-link {{ request()->is('homepage','homepage/*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <p>HOME PAGE</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="/barangjual"
                         class="nav-link {{ request()->is('barangjual','barangjual/*') ? 'active' : '' }}">

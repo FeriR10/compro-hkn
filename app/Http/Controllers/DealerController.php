@@ -41,10 +41,46 @@ class DealerController extends Controller
 
         // update data 
         $cekorder = Cekout::find($id);
-        $cekorder->status = "Aprove";
+        $cekorder->status = "Menunggu";
         $cekorder->update();
         Session::flash('status', 'success');
-        Session::flash('message', 'Status Menjadi Selesai');
+        Session::flash('message', 'Status Menjadi Menunggu');
+        return redirect('/order');
+    
+    }
+    public function dp_lunas($id)
+    {
+
+        // update data 
+        $cekorder = Cekout::find($id);
+        $cekorder->status = "DP lunas";
+        $cekorder->update();
+        Session::flash('status', 'success');
+        Session::flash('message', 'Status Menjadi DP lunas');
+        return redirect('/order');
+    
+    }
+    public function lunas($id)
+    {
+
+        // update data 
+        $cekorder = Cekout::find($id);
+        $cekorder->status = "Lunas";
+        $cekorder->update();
+        Session::flash('status', 'success');
+        Session::flash('message', 'Status Menjadi Lunas');
+        return redirect('/order');
+    
+    }
+    public function dibatalkan($id)
+    {
+
+        // update data 
+        $cekorder = Cekout::find($id);
+        $cekorder->status = "Dibatalkan";
+        $cekorder->update();
+        Session::flash('status', 'success');
+        Session::flash('message', 'Status Menjadi Dibatalkan');
         return redirect('/order');
     
     }
@@ -89,4 +125,10 @@ class DealerController extends Controller
         ]);
 
     }
+    public  function homepage()
+    {
+        $home = Cekout::where('users_id', auth()->user()->id)->get();
+        return view('dealer.homepage', compact('home'));
+    }
+    
 }

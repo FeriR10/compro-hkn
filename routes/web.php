@@ -65,11 +65,16 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/historyorder/{id}/update', [KeranjangController::class, 'historyorderupdate']);
     
     Route::get('/order', [DealerController::class, 'order']);
-    Route::get('/aprove/{id}/menunggu', [DealerController::class, 'aprove']);
+    
     Route::get('/aprove/{id}/payment', [DealerController::class, 'aprovepayment']);
     Route::get('/historypemesanan', [DealerController::class, 'historypemesanan']);
     Route::get('/historypemesanan/{id}/update', [DealerController::class, 'historypemsananupdate']);
     Route::get('/viewdetailorder/{id}', [DealerController::class, 'viewdetailorder']);
+    Route::get('/homepage', [DealerController::class, 'homepage']);
+    Route::get('/aprove/{id}/menunggu', [DealerController::class, 'aprove']);
+    Route::get('/aprove/{id}/dp_lunas', [DealerController::class, 'dp_lunas']);
+    Route::get('/aprove/{id}/lunas', [DealerController::class, 'lunas']);
+    Route::get('/aprove/{id}/dibatalkan', [DealerController::class, 'dibatalkan']);
     
 
     Route::get('/jenispayment', [PaymentController::class, 'jenispayment']);

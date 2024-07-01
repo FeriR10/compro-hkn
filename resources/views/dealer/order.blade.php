@@ -17,7 +17,7 @@
             <div class="card-header">
                 <h3 class="card-title">History Transaksi Pelanggan<strong></strong></h3>
                 <div class="card-tools">
-                    
+
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -39,8 +39,8 @@
                             <th>Tanggal Pemesanan</th>
                             <th>Jumlah Barang</th>
                             <th>Total Harga</th>
-                            <th>Status Kirim</th>
                             <th>Bukti Bayar</th>
+                            <th>Rubah Status Bayar</th>
                             <th>Status Bayar</th>
                         </tr>
                     </thead>
@@ -152,40 +152,48 @@
 
                             </th>
                             <th>@currency($cek->total_harga)</th>
-
-                            <th>
-                                @if ($cek->status == 'Menunggu')
-                                <a href="/aprove/{{$cek->id}}/menunggu"
-                                    class="btn btn-warning btn-sm">{{ $cek->status }} Aprove</a>
-                                @elseif($cek->status == 'Aprove')
-                                <a href="" class="badge badge-success">Berhasil Di Aprove</a>
-                                @elseif($cek->status == 'Dibatalkan')
-                                <a href="" class="badge badge-danger">Dibatalkan</a>
-                                @endif
-
-                            </th>
                             <th>
                                 <?php if ($cek->payment && $cek->payment->bukti_bayar): ?>
                                 <img src="{{ asset('storage/' . $cek->payment->bukti_bayar) }}" width="100px"
                                     height="100px">
                                 <?php else: ?>
-                                <span>Tidak Tersedia</span>
+                                <span></span>
                                 <?php endif; ?>
                             </th>
                             <th>
-                                @if ($cek->status == 'Menunggu' || $cek->status == 'Aprove')
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button">
+                                        {{$cek->status}}
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="/aprove/{{$cek->id}}/menunggu">Menunggu</a>
+                                        <a class="dropdown-item" href="/aprove/{{$cek->id}}/dp_lunas">DP Lunas</a>
+                                        <a class="dropdown-item" href="/aprove/{{$cek->id}}/lunas">Lunas</a>
+                                        <a class="dropdown-item" href="/aprove/{{$cek->id}}/dibatalkan">Dibatalkan</a>
+                                    </div>
+                                </div>
+                            </th>
+
+                           
+                            <th>
+                                @if ($cek->status == 'Menunggu' || $cek->status == 'DP lunas' || $cek->status == 'Lunas')
                                     @if ($cek->payment && $cek->payment->status == 'Belum Di Transfer')
-                                    <a href="/aprove/{{$cek->id}}/payment" class="btn btn-warning btn-sm">Tandai Jika Sudah Transfer</a>
+                                        <a href="/aprove/{{$cek->id}}/payment" class="btn btn-warning btn-sm">On Process</a>
                                     @elseif ($cek->payment && $cek->payment->status == 'Berhasil Bayar')
                                     <a href="" class="badge badge-success">Berhasil Di Bayar</a>
                                     @else
-                                    <span>Tidak Tersedia</span>
+                                    <span></span>
                                     @endif
                                 @elseif($cek->status == 'Dibatalkan')
                                 <span class="badge badge-danger">Transaksi dibatalkan</span>
                                 @endif
                             </th>
-
+                           
                         </tr>
                         @endforeach
                     </tbody>
