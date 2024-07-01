@@ -80,7 +80,7 @@
                 <li class="nav-item">
                     <a href="/order" class="nav-link {{ request()->is('order','order/*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-layer-group"></i>
-                        <p>TOOl ORDER</p>
+                        <p>TOOL PEMESANAN</p>
                     </a>
                 </li>
                 @endif
