@@ -33,26 +33,33 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               @if (auth()->user()->role_id == 2 || auth()->user()->role_id == 1)
+               @if (auth()->user()->role_id == 1)
+               <li class="nav-item">
+                    <a href="/dashboard" class="nav-link {{ request()->is('dashboard','dashboard/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-house"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+
                <li class="nav-item">
                     <a href="/homepage"
                         class="nav-link {{ request()->is('homepage','homepage/*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <p>HOME PAGE</p>
+                        <i class="fa-solid fa-house"></i>
+                        <p>Home Page</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/barangjual"
                         class="nav-link {{ request()->is('barangjual','barangjual/*') ? 'active' : '' }}">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <p>SHOP</p>
+                        <p>Shopping</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/keranjang"
                         class="nav-link {{ request()->is('keranjang','keranjang/*') ? 'active' : '' }}">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <p>KERANJANG</p>
+                        <p>Keranjang</p>
                     </a>
                 </li>
                 <!-- <li class="nav-item">
@@ -66,32 +73,28 @@
                     <a href="/historypemesanan"
                         class="nav-link {{ request()->is('historypemesanan','historypemesanan/*') ? 'active' : '' }}">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <p>HISTORI PEMESANAN</p>
-                    </a>
-                </li>
-                @endif
-                @if (auth()->user()->role_id == 3 || auth()->user()->role_id == 1)
-                <li class="nav-item">
-                    <a href="/dashboard" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-house"></i>
-                        <p>Dashboard</p>
+                        <p>History Pesanan</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/order" class="nav-link {{ request()->is('order','order/*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-layer-group"></i>
-                        <p>TOOL PEMESANAN</p>
+                        <p>Tool Pesanan</p>
                     </a>
                 </li>
-                @endif
-                @if (auth()->user()->role_id == 3 || auth()->user()->role_id == 1)
+                <li class="nav-item">
+                    <a href="/pengumuman" class="nav-link {{ request()->is('pengumuman','pengumuman/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-layer-group"></i>
+                        <p>Pengumuman</p>
+                    </a>
+                </li>
                 <li
                     class="nav-item has-treeview {{ request()->is('barang','barang/*','kategori','kategori/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('barang','barang/*','kategori','kategori/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
-                            TOOL BARANG
+                            Tool Barang
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -99,26 +102,26 @@
                         <li class="nav-item">
                             <a href="/barang" class="nav-link {{ request()->is('barang','barang/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-layer-group"></i>
-                                <p>DATA BARANG</p>
+                                <p>Data Barang</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/tambah" class="nav-link {{ request()->is('tambah','tambah/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-layer-group"></i>
-                                <p>TAMBAH DATA BARANG</p>
+                                <p>Tambah Data Barang</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/kategori" class="nav-link {{ request()->is('kategori','kategori/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-layer-group"></i>
-                                <p>TAMBAH KATEGORI </p>
+                                <p>Tambah Kategori </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/viewdiskon"
                                 class="nav-link {{ request()->is('viewdiskon','viewdiskon/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-layer-group"></i>
-                                <p>DISKON</p>
+                                <p>Diskon</p>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
@@ -132,13 +135,11 @@
                             <a href="/jenispayment"
                                 class="nav-link {{ request()->is('jenispayment','jenispayment/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-layer-group"></i>
-                                <p>JENIS PAYMENT</p>
+                                <p>Jenis Payment</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                @endif
-                @if (auth()->user()->role_id == 1)
                 <li
                     class="nav-item has-treeview {{ request()->is('datauser','datauser/*' ,'registeradmin','registeradmin/*') ? 'menu-open' : '' }}">
                     <a href="#"
@@ -154,20 +155,132 @@
                             <a href="/datauser"
                                 class="nav-link {{ request()->is('datauser','datauser/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-newspaper"></i>
-                                <p>DATA USER</p>
+                                <p>Data User</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/registeradmin"
                                 class="nav-link {{ request()->is('registeradmin','registeradmin/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-newspaper"></i>
-                                <p>TAMBAH USER</p>
+                                <p>Tambah User</p>
                             </a>
                         </li>
 
                         
                     </ul>
-                    @endif
+                @endif
+                @if (auth()->user()->role_id == 2 )
+                <li class="nav-item">
+                    <a href="/homepage"
+                        class="nav-link {{ request()->is('homepage','homepage/*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-house"></i>
+                        <p>Home Page</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/barangjual"
+                        class="nav-link {{ request()->is('barangjual','barangjual/*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <p>Shopping</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/keranjang"
+                        class="nav-link {{ request()->is('keranjang','keranjang/*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Keranjang</p>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="/historyorder"
+                        class="nav-link {{ request()->is('historyorder','historyorder/*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Data Order</p>
+                    </a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="/historypemesanan"
+                        class="nav-link {{ request()->is('historypemesanan','historypemesanan/*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>History Pesanan</p>
+                    </a>
+                </li>
+                @endif
+                @if (auth()->user()->role_id == 3 )
+                <li class="nav-item">
+                    <a href="/dashboard" class="nav-link {{ request()->is('dashboard','dashboard/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-house"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/order" class="nav-link {{ request()->is('order','order/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-layer-group"></i>
+                        <p>Tool Pesanan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/pengumuman" class="nav-link {{ request()->is('pengumuman','pengumuman/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-layer-group"></i>
+                        <p>Pengumuman</p>
+                    </a>
+                </li>
+               
+                <li
+                    class="nav-item has-treeview {{ request()->is('barang','barang/*','kategori','kategori/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('barang','barang/*','kategori','kategori/*', 'tambah','tambah/*','viewdiskon','viewdiskon/*','creatediskon','creatediskon/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                            Tool Barang
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/barang" class="nav-link {{ request()->is('barang','barang/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>Data Barang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/tambah" class="nav-link {{ request()->is('tambah','tambah/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>Tambah Barang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/kategori" class="nav-link {{ request()->is('kategori','kategori/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>Tambah Kategori </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/viewdiskon"
+                                class="nav-link {{ request()->is('viewdiskon','viewdiskon/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>Diskon</p>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a href="/creatediskon"
+                                class="nav-link {{ request()->is('creatediskon','creatediskon/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>TAMBAH DISKON</p>
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a href="/jenispayment"
+                                class="nav-link {{ request()->is('jenispayment','jenispayment/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>Jenis Payment</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+
+            </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>

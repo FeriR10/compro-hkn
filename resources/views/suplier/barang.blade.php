@@ -45,7 +45,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
                        @foreach($barang as $barang)
                             <tr>
                                 <th>{{$barang->nama_barang}}</th>

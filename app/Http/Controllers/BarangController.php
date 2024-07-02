@@ -147,18 +147,31 @@ class BarangController extends Controller
         $barang->delete();
         return redirect('/barang');
     }
-    public function barangjual()
+    public function barangjual(Request $request)
     {
-        $barang = Barang::get();
+        // $barang = Barang::get();
+  
+        // barang query
+        $barang = Barang::query();
+        if ($request->cari) {
+            $barang = $barang->where('nama_barang', 'like', '%' . $request->cari . '%');
+        }
+        $barang = $barang->get();
+        dd($barang);
         return view('suplier.barangjual',[
             'barang' => $barang,
         ]);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $barangs = Barang::get();
+        $barangs = Barang::query();
+        if ($request->cari) {
+            $barangs = $barangs->where('nama_barang', 'like', '%' . $request->cari . '%');
+        }
+        $barangs = $barangs->get();
+        $pencarian = $request->cari;
         $keranjangs = Keranjang::where('users_id', Auth::user()->id)->get();
-        return view('suplier.barangjual', compact('barangs', 'keranjangs'));
+        return view('suplier.barangjual', compact('barangs', 'keranjangs', 'pencarian'));
        
     }
     public function viewdiskon()

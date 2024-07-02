@@ -35,12 +35,20 @@ class KeranjangController extends Controller
         $user = Auth::user();
         
         $keranjang = Keranjang::where('users_id', $user->id)->get();
+
+        // get barang foreach keranjang
+        $barangs = [];
+        foreach ($keranjang as $key => $value) {
+            $barangs[$key] = $value->barang;
+        }
+
         $totalHarga = $keranjang->sum('total_harga');
         $diskon = Diskon::all();
         $jenis_payment = Jenispayment::all();
         
         return view('suplier.keranjang',[
             'keranjang' => $keranjang,
+            'barangs' => $barangs,
             'cekouts' => $keranjang,
             'diskon' => $diskon,
             'totalHarga' => $totalHarga,

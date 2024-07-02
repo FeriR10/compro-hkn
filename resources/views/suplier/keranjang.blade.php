@@ -50,8 +50,9 @@
                             <td> {{ $keranjang->qty }}</td>
                             <td>@currency( $keranjang->qty * $keranjang->barang->harga )</td>
                             <td>
-                                <a href="/keranjang/kurang/{{ $keranjang->id }}" class="btn btn-danger">-</a>
-                                <a href="/keranjang/tambah/{{ $keranjang->id }}" class="btn btn-primary">+</a>
+                            <a href="/keranjang/kurang/{{ $keranjang->id }}" class="btn btn-danger">-</a>
+                            <a href="/keranjang/tambah/{{ $keranjang->id }}" class="btn btn-primary @if($keranjang->qty == $keranjang->barang->qty) disabled @endif">+</a>
+
                             </td>
                             @empty
                                         

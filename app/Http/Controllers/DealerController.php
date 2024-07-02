@@ -9,6 +9,7 @@ use Auth;
 use App\Models\Payment;
 use App\Models\Riwayat;
 use App\Models\Profileuser;
+use App\Models\Pengumuman;
 
 
 
@@ -106,9 +107,19 @@ class DealerController extends Controller
         Session::flash('message', 'Pesanan di Batalkan');
         return redirect('/historypemesanan');
     }
-    public function viewdetailorder($id)
+    public function viewdetailorder(Request $request, $id)
     {
         $cekorder = Cekout::where('id', $id)->first();
+        $optionRiwayats = Riwayat::where('cekout_id', $id)->get();
+
+        $riwayat = Riwayat::where('cekout_id', $id);
+
+        if ($request->cari) {
+            $riwayat = $riwayat->where('id', $request->cari);
+        }
+
+        $riwayat = $riwayat->get();
+
         if (is_null($cekorder)) {
             return redirect()->back()->with('error', 'Order not found');
         }
@@ -117,8 +128,12 @@ class DealerController extends Controller
         $bukti = Payment::where('id', $cekorder->payment_id)->value('bukti_bayar');
         $alamat = Profileuser::where('users_id',  $cekorder->users_id)->first();
         
+
+
         return view('dealer.viewdetailorder',[
             'cekorder' => $cekorder,
+            'optionRiwayats' => $optionRiwayats,
+            'riwayat' => $riwayat,
             'totalharga' => $totalharga,
             'bukti' => $bukti,
             'alamat' => $alamat
@@ -127,8 +142,9 @@ class DealerController extends Controller
     }
     public  function homepage()
     {
+        $pengumuman = Pengumuman::get();
         $home = Cekout::where('users_id', auth()->user()->id)->get();
-        return view('dealer.homepage', compact('home'));
+        return view('dealer.homepage', compact('home', 'pengumuman'));
     }
     
 }

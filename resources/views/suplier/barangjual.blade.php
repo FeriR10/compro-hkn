@@ -31,6 +31,36 @@
                     {{Session::get('message')}}
                 </div>
                 @endif
+
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <div class="d-flex justify-content-end">
+                            <form action="/barangjual" method="GET">
+                                @csrf
+                                <div class="d-flex align-items-center">
+                                    <label for="Cari" class="mr-2">Cari</label>
+                                    <input type="text" class="form-control" name="cari" id="cari">
+                                    <button title="Cari" type="submit" class="btn btn-primary ml-2">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    @if($pencarian != null)
+                                        <a href="/barangjual" class="btn btn-warning ml-2">
+                                            <i class="fas fa-refresh"></i>
+                                        </a>
+                                    @endif
+                                </div>
+                            </form>
+                        </div>
+                        @if($pencarian != null)
+                            <div class="d-flex justify-content-end mt-2">
+                                <p>Hasil pencarian : <b>{{$pencarian}}</b></h1>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+                <hr>
+
                 <form  action="/keranjang/store" method="POST">
                     @csrf
                     <div class="row">
@@ -54,7 +84,7 @@
                         
                     </div>
                     <div>
-                    <button type="submite" class="btn btn-primary" >Masukan Keranjang</button>
+                    <button type="submite" class="btn btn-primary">Masukan Keranjang</button>
                     </div>
                 </form>
                 <!-- Button trigger modal -->

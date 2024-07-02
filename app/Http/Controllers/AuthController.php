@@ -43,7 +43,7 @@ class AuthController extends Controller
             return redirect('/dashboard');
         }
         // Redirect ke halaman yang diinginkan jika role bukan dealer
-        return redirect()->intended('/barangjual');
+        return redirect()->intended('/dashboard');
     }
 
     // Flash pesan jika login gagal

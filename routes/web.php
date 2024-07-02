@@ -8,6 +8,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DealerController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PengumumanController;
 
 
 
@@ -83,5 +84,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/jenispayment/create', [PaymentController::class, 'store']);
     Route::post('/createuploadbuktibayar/{id}/update', [PaymentController::class, 'createuploadbuktibayar']);
     Route::get('/uploadbuktibayar/{id}', [PaymentController::class, 'uploadbuktibayar']);
+
+    Route::get('/pengumuman', [PengumumanController::class, 'pengumuman']);
+    Route::post('/createpengumuman-process', [PengumumanController::class, 'createpengumumanProcess']);
+    Route::get('/delete/{id}', [PengumumanController::class, 'deletepengumuman']);
 
 });

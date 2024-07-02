@@ -37,6 +37,29 @@
                 @if(session('error'))
                 <p>{{ session('error') }}</p>
                 @else
+
+                <div class="row mb-3 justify-content-end">
+                    <div class="col-md-4">
+                        <form action="/viewdetailorder/{{$cekorder->id}}" method="GET">
+                            @csrf
+                            <div class="d-flex justify-content-end align-items-center">
+                                <label for="cari" class="mr-2">Cari</label>
+                                <select name="cari" class="form-control mr-2" id="">
+                                    <option value="">Piih barang</option>
+                                    @foreach($optionRiwayats as $cek )
+                                        <option value="{{$cek->id}}" > {{$cek->barang->nama_barang}} </option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <hr>
+
                 <table id="example2" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
                         <tr class="highlight">
@@ -50,7 +73,7 @@
                     </thead>
                     <tbody>
 
-                        @foreach($cekorder->riwayat as $cek )
+                        @foreach($riwayat as $cek )
                         <tr>
                             <th> {{$cek->barang->kode_barang}} </th>
                             <th> {{$cek->barang->nama_barang}} </th>
