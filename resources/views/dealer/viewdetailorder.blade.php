@@ -128,7 +128,14 @@
                     </div>
                     <div class="col-sm">
                         <!--sapace-->
-
+                            <table id="" class="table table-bordered table-striped ">
+                                <tr>
+                                    <td class="text-center">Keterangan</td>
+                                </tr>
+                                <tr>
+                                    <td>{{$cekorder->keterangan ?? '-'}}</td>
+                                </tr>
+                            </table>
                         <!--sapace-->
                     </div>
                     <div class="col-sm text-center">

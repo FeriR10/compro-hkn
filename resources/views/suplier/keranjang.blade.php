@@ -17,7 +17,7 @@
             <div class="card-header">
                 <h3 class="card-title">KERANJANG<strong></strong></h3>
                 <div class="card-tools">
-                    
+
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -50,14 +50,15 @@
                             <td> {{ $keranjang->qty }}</td>
                             <td>@currency( $keranjang->qty * $keranjang->barang->harga )</td>
                             <td>
-                            <a href="/keranjang/kurang/{{ $keranjang->id }}" class="btn btn-danger">-</a>
-                            <a href="/keranjang/tambah/{{ $keranjang->id }}" class="btn btn-primary @if($keranjang->qty == $keranjang->barang->qty) disabled @endif">+</a>
+                                <a href="/keranjang/kurang/{{ $keranjang->id }}" class="btn btn-danger">-</a>
+                                <a href="/keranjang/tambah/{{ $keranjang->id }}"
+                                    class="btn btn-primary @if($keranjang->qty == $keranjang->barang->qty) disabled @endif">+</a>
 
                             </td>
                             @empty
-                                        
+
                             <td colspan="5">Tidak ada barang untuk cekout.</td>
-                                        
+
                         </tr>
                         @endforelse
                     </tbody>
@@ -147,6 +148,14 @@
                                                     </select>
                                                 </div>
                                             </tr>
+                                            <tr>
+                                                <div class="form-group">
+                                                    <label for="">Keterangan</label>
+                                                    <textarea type="text" name="keterangan" class="form-control"
+                                                        value=""></textarea>
+
+                                                </div>
+                                            </tr>
                                         </thead>
                                     </table>
                                     <tfoot>
@@ -154,7 +163,7 @@
                                             <td colspan="2" class="text-right font-weight-bold">total</td>
 
                                             <td>
-                                @currency($totalHarga)
+                                                @currency($totalHarga)
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -164,10 +173,10 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     @if($cekouts->isEmpty())
-        <button type="submit" class="btn btn-primary" disabled>Bayar</button>
-        @else
-        <button type="submit" class="btn btn-primary">Bayar</button>
-        @endif
+                                    <button type="submit" class="btn btn-primary" disabled>Bayar</button>
+                                    @else
+                                    <button type="submit" class="btn btn-primary">Bayar</button>
+                                    @endif
                                 </div>
                             </form>
                         </div>

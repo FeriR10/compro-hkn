@@ -123,6 +123,7 @@ class KeranjangController extends Controller
         $cekout->diskon_id = $request->diskon;
         $cekout->total_harga = $total_harga_setelah_diskon;
         $cekout->status = 'Menunggu';
+        $cekout->keterangan = $request->keterangan;
         $cekout->payment_id = $payment->id;
         $cekout->save();
         
