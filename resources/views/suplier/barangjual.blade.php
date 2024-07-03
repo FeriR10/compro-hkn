@@ -59,36 +59,36 @@
 
                 <form action="/keranjang/store" method="POST">
                     @csrf
-                    <div class="row">
+                    <div class="row mt-3">
                         @foreach ($barangs as $barang)
-                        <div class="col-sm-3 mb-3 mb-sm-0">
-    <div class="card h-100">
-        <div class="card-header bg-primary text-white">
-            <h5 class="card-title mb-0">{{ $barang->nama_barang }}</h5>
-        </div>
-        <div class="card-body text-center">
-            @if ($barang->thumbnail)
-                <img src="{{ asset('storage/' . $barang->thumbnail) }}" class="img-fluid mb-3"
-                    alt="{{ $barang->nama_barang }}" style="max-height: 200px;">
-            @else
-                <div class="text-center py-5">
-                    <i class="fas fa-image fa-4x text-muted"></i>
-                    <p class="mt-2">Gambar tidak tersedia</p>
-                </div>
-            @endif
-            <p class="card-text">{{ $barang->kategori_barang }}</p>
-            <p class="card-text">@currency($barang->harga)</p>
-            <div class="form-check">
-                <input type="checkbox" name="keranjang[{{ $barang->id }}]" class="form-control">
-            </div>
-        </div>
-    </div>
-</div>
+                        <div class="col-sm-3 mb-3 mt-4 mb-sm-0">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="card-title mb-0">{{ $barang->nama_barang }}</h5>
+                                </div>
+                                <div class="card-body text-center">
+                                    @if ($barang->thumbnail)
+                                    <img src="{{ asset('storage/' . $barang->thumbnail) }}" class="img-fluid mb-3"
+                                        alt="{{ $barang->nama_barang }}" style="max-height: 200px;">
+                                    @else
+                                    <div class="text-center py-5">
+                                        <i class="fas fa-image fa-4x text-muted"></i>
+                                        <p class="mt-2">Gambar tidak tersedia</p>
+                                    </div>
+                                    @endif
+                                    <p class="card-text">{{ $barang->kategori_barang }}</p>
+                                    <p class="card-text">@currency($barang->harga)</p>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="keranjang[{{ $barang->id }}]" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         @endforeach
                     </div>
                     <div class="text-center mt-3 fixed-btn"">
-                        <button type="submit" class="btn btn-primary btn-lg ">Masukan Keranjang</button>
+                        <button type=" submit" class="btn btn-primary btn-lg ">Masukan Keranjang</button>
                     </div>
                 </form>
             </div>
@@ -101,10 +101,14 @@
 <style>
     .fixed-btn {
         position: fixed;
-        bottom: 20px; /* Adjust as needed */
-        right: 20px; /* Adjust as needed */
-        z-index: 1000; /* Ensure it's above other content */
+        bottom: 20px;
+        /* Adjust as needed */
+        right: 20px;
+        /* Adjust as needed */
+        z-index: 1000;
+        /* Ensure it's above other content */
     }
+
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
