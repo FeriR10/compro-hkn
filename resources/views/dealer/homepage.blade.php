@@ -23,8 +23,9 @@
         }
 
         .carousel-inner img {
-            max-width: 100%;
-            max-height: 400px;
+            width: 100%;
+            height: 300px; /* Set a fixed height */
+            object-fit: contain; /* Ensure images cover the container while maintaining aspect ratio */
             align: center;
         }
     </style>
@@ -41,7 +42,7 @@
                     <div class="carousel-inner">
                         @foreach ($pengumuman as $key => $gambar)
                         <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                            <img src="{{ $gambar->thumbnail ? asset('storage/'.$gambar->thumbnail) : asset('storage/images/default.png') }}" class="d-block w-100 object-fit-contain" alt="...">
+                            <img src="{{ $gambar->thumbnail ? asset('storage/'.$gambar->thumbnail) : asset('storage/images/default.png') }}" class="d-block w-100 " alt="...">
                         </div>
                         @endforeach
                     </div>
