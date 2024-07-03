@@ -1,14 +1,12 @@
 @extends('layout/master')
 
-
 @section('content')
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-
+        <h1>Detail Pesanan</h1>
     </section>
-
 
     <!-- Main content -->
     <section class="content">
@@ -17,25 +15,26 @@
         <div class="card">
             <div class="card-header row">
                 <div class="col-md-4">
-                    <h3 class="card-title">Data Barang <strong>{{$cekorder->created_at->format('d-m-Y')}}</strong></h3>
+                    <h3 class="card-title">Tanggal Pesanan: <strong>{{$cekorder->created_at->format('d-m-Y')}}</strong></h3>
                 </div>
                 <div class="col-md-4 d-flex align-items-center justify-content-center">
-                    <p class="card-title">Status : <strong>{{$cekorder->status}}</strong></p>
+                    <p class="card-title">Status: <strong class="badge badge-info">{{$cekorder->status}}</strong></p>
                 </div>
                 <div class="col-md-4 text-right">
-                    <h3 class="card-title float-right">No Order : <strong>{{$cekorder->id}}</strong></h3>
-
+                    <h3 class="card-title float-right">No Pesanan: <strong>{{$cekorder->id}}</strong></h3>
                 </div>
             </div>
             <div class="card-body">
                 @if (Session::has('status'))
                 <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
                     {{Session::get('message')}}
                 </div>
                 @endif
                 @if(session('error'))
-                <p>{{ session('error') }}</p>
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
                 @else
 
                 <div class="row mb-3 justify-content-end">
@@ -45,9 +44,9 @@
                             <div class="d-flex justify-content-end align-items-center">
                                 <label for="cari" class="mr-2">Cari</label>
                                 <select name="cari" class="form-control mr-2" id="">
-                                    <option value="">Piih barang</option>
-                                    @foreach($optionRiwayats as $cek )
-                                        <option value="{{$cek->id}}" > {{$cek->barang->nama_barang}} </option>
+                                    <option value="">Pilih barang</option>
+                                    @foreach($optionRiwayats as $cek)
+                                        <option value="{{$cek->id}}">{{$cek->barang->nama_barang}}</option>
                                     @endforeach
                                 </select>
                                 <button type="submit" class="btn btn-primary">
@@ -60,7 +59,7 @@
 
                 <hr>
 
-                <table id="example2" class="table table-bordered table-striped" style="text-align: center">
+                <table class="table table-bordered table-striped text-center">
                     <thead>
                         <tr class="highlight">
                             <th>Kode Barang</th>
@@ -72,22 +71,17 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        @foreach($riwayat as $cek )
+                        @foreach($riwayat as $cek)
                         <tr>
-                            <th> {{$cek->barang->kode_barang}} </th>
-                            <th> {{$cek->barang->nama_barang}} </th>
-                            <th> {{$cek->qty}} </th>
-                            <th> @currency ($cek->harga_satuan) </th>
-                            <th> @currency (($cek->harga_satuan * $cek->qty) * $cekorder->diskon->persen) </th>
-                            <th> @currency (($cek->harga_satuan * $cek->qty)-($cek->harga_satuan * $cek->qty) *
-                                $cekorder->diskon->persen)</th>
+                            <td>{{$cek->barang->kode_barang}}</td>
+                            <td>{{$cek->barang->nama_barang}}</td>
+                            <td>{{$cek->qty}}</td>
+                            <td>@currency($cek->harga_satuan)</td>
+                            <td>@currency(($cek->harga_satuan * $cek->qty) * $cekorder->diskon->persen)</td>
+                            <td>@currency(($cek->harga_satuan * $cek->qty)-($cek->harga_satuan * $cek->qty) * $cekorder->diskon->persen)</td>
                         </tr>
-
                         @endforeach
-
                     </tbody>
-
                 </table>
 
                 @endif
@@ -95,80 +89,65 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 <div class="row">
-                    <div class="col-sm">
-                        <table id="" class="table table-bordered table-striped ">
+                    <div class="col-sm-6">
+                        <table class="table table-bordered table-striped">
                             <thead>
-                                <tr style="width: 50%;">
+                                <tr>
                                     <th>Total Harga</th>
-                                    <th>@currency ($totalharga)</th>
+                                    <th>@currency($totalharga)</th>
                                 </tr>
                                 <tr>
                                     <th>Diskon</th>
-                                    <th>@currency ($totalharga * $cekorder->diskon->persen)</th>
+                                    <th>@currency($totalharga * $cekorder->diskon->persen)</th>
                                 </tr>
                                 <tr>
                                     <th>PPN</th>
                                     <th>-</th>
                                 </tr>
-                                <tr class="highlight">
+                                <tr class="bg-primary">
                                     <th>Total Bayar</th>
-                                    <th>@currency (($totalharga)-($totalharga * $cekorder->diskon->persen))</th>
+                                    <th>@currency($totalharga - ($totalharga * $cekorder->diskon->persen))</th>
                                 </tr>
                             </thead>
-
-
-
                         </table>
-                        <table id="" class="table table-bordered table-striped ">
+                        <table class="table table-bordered table-striped">
                             <tr>
                                 <th>Alamat Kirim</th>
-                                <th>{{$alamat->alamat_kirim ?? '-'}}</th>
+                                <td>{{$alamat->alamat_kirim ?? '-'}}</td>
                             </tr>
                         </table>
                     </div>
-                    <div class="col-sm">
-                        <!--sapace-->
-                            <table id="" class="table table-bordered table-striped ">
-                                <tr>
-                                    <td class="text-center">Keterangan</td>
-                                </tr>
-                                <tr>
-                                    <td>{{$cekorder->keterangan ?? '-'}}</td>
-                                </tr>
-                            </table>
-                        <!--sapace-->
-                    </div>
-                    <div class="col-sm text-center">
-                        <table>
+                    <div class="col-sm-6">
+                        <table class="table table-bordered table-striped">
                             <tr>
-                                <td>
-                                    <div class="badge badge-success">
-                                        <h5>Bukti Bayar</h5>
-                                    </div>
-                                </td>
+                                <th class="text-center">Keterangan</th>
                             </tr>
                             <tr>
-                                <td class="">
-                                    @if ($bukti == null)
-                                    <h5 class="text-danger">Bukti Bayar Tidak ada</h5>
-                                    @else
-                                    <img src="{{ asset('storage/' . $bukti) }}" width="200px">
-                                    @endif
-
-                                </td>
+                                <td>{{$cekorder->keterangan ?? '-'}}</td>
                             </tr>
                         </table>
-
+                        <div class="text-center mt-3">
+                            <div class="badge badge-success mb-3">
+                                <h5>Bukti Bayar</h5>
+                            </div>
+                            <div>
+                                @if ($bukti == null)
+                                <h5 class="text-danger">Bukti Bayar Tidak ada</h5>
+                                @else
+                                <img src="{{ asset('storage/' . $bukti) }}" width="200px">
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /.card-footer-->
-</div>
-<!-- /.card -->
+        <!-- /.card-footer -->
+    </div>
+    <!-- /.card -->
 
-</section>
-<!-- /.content -->
+    </section>
+    <!-- /.content -->
 </div>
 
 @endsection

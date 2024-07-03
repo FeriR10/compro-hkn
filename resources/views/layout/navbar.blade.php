@@ -15,10 +15,10 @@
     <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <li>
-            <a href="/keranjang">
+            <!-- <a href="/keranjang">
                 <i class="fa-solid fa-cart-shopping"></i>
 
-            </a>
+            </a> -->
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">

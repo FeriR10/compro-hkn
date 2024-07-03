@@ -121,7 +121,7 @@
                                         </tr>
                                         @endforelse
                                     </tbody>
-                                    <h2>Diskon yang Tersedia</h2>
+                                    <h2>List Barang</h2>
                                     <table border="1">
                                         <thead>
                                             <tr>

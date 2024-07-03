@@ -34,7 +34,7 @@
     <section class="content">
         <!-- Default box -->
         <div class="crad">
-            <div class="card-header with-border">
+            <div class="card-header ">
                 <h3 class="card-title ">Pengumuman</h3>
             </div>
             <div class="card-body">
@@ -48,11 +48,11 @@
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        <span class="visually-hidden"></span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
+                        <span class="visually-hidden"></span>
                     </button>
                 </div>
             </div>
