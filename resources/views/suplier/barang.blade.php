@@ -6,7 +6,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        
+
     </section>
 
     <!-- Main content -->
@@ -33,7 +33,14 @@
                     {{Session::get('message')}}
                 </div>
                 @endif
-                <table id="example1" class="table table-bordered table-striped" style="text-align: center">
+                <style>
+                    .table td,
+                    .table th {
+                        vertical-align: middle !important;
+                    }
+
+                </style>
+                <table id="example1" class="table table-bordered table-striped text-center">
                     <thead>
                         <tr class="highlight">
                             <th>Nama Barang</th>
@@ -45,28 +52,30 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody> 
-                       @foreach($barang as $barang)
-                            <tr>
-                                <th>{{$barang->nama_barang}}</th>
-                                <th>{{$barang->kategori->kategori_barang ?? '-'}}</th>
-                                <th>{{$barang->kode_barang}}</th>
-                                <th>{{$barang->qty}}</th>
-                                <th>@currency($barang->harga)</th>
-                                <th><img src="{{asset('storage/'.$barang->thumbnail)}}" width="100px" height="100px"></th>
-                                <th><a href="/barang/{{$barang->id}}/edit" class="btn btn-warning">edit menu</a>
-                               
-                                <a href="/barang/{{$barang->id}}/delete" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS MENU BARANG INI?')" class="btn btn-danger"> Delete</a>
+                    <tbody class="">
+                        @foreach($barang as $barang)
+                        <tr>
+                            <td>{{$barang->nama_barang}}</td>
+                            <td>{{$barang->kategori->kategori_barang ?? '-'}}</td>
+                            <td>{{$barang->kode_barang}}</td>
+                            <td>{{$barang->qty}}</td>
+                            <td>@currency($barang->harga)</td>
+                            <td><img src="{{asset('storage/'.$barang->thumbnail)}}" width="100px" height="100px"></td>
+                            <td><a href="/barang/{{$barang->id}}/edit" class="btn btn-warning">edit menu</a>
 
-                                </th>
-                            
-                            </tr>
-                       @endforeach
+                                <a href="/barang/{{$barang->id}}/delete"
+                                    onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS MENU BARANG INI?')"
+                                    class="btn btn-danger"> Delete</a>
+
+                            </td>
+
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
             <!-- /.card-body -->
-            
+
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->

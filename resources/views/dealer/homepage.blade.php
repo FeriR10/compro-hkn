@@ -10,13 +10,15 @@
     </section>
 
     <style>
-        .carousel-control-prev, .carousel-control-next {
+        .carousel-control-prev,
+        .carousel-control-next {
             width: auto;
             background: none;
             border: none;
         }
 
-        .carousel-control-prev-icon, .carousel-control-next-icon {
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 50%;
             padding: 10px;
@@ -24,33 +26,41 @@
 
         .carousel-inner img {
             width: 100%;
-            height: 300px; /* Set a fixed height */
-            object-fit: contain; /* Ensure images cover the container while maintaining aspect ratio */
+            height: 300px;
+            /* Set a fixed height */
+            object-fit: contain;
+            /* Ensure images cover the container while maintaining aspect ratio */
             align: center;
         }
+
     </style>
 
     <!-- Main content -->
     <section class="content">
         <!-- Default box -->
         <div class="crad">
-            <div class="card-header ">
+            <div class="card-header">
                 <h3 class="card-title ">Pengumuman</h3>
+                
             </div>
+
             <div class="card-body">
-            <div id="carouselExample" class="carousel slide mb-3" data-bs-ride="carousel">
+                <div id="carouselExample" class="carousel slide mb-3" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @foreach ($pengumuman as $key => $gambar)
                         <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                            <img src="{{ $gambar->thumbnail ? asset('storage/'.$gambar->thumbnail) : asset('storage/images/default.png') }}" class="d-block w-100 " alt="...">
+                            <img src="{{ $gambar->thumbnail ? asset('storage/'.$gambar->thumbnail) : asset('storage/images/default.png') }}"
+                                class="d-block w-100 " alt="...">
                         </div>
                         @endforeach
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"></span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"></span>
                     </button>
@@ -62,7 +72,8 @@
             <div class="card-header">
                 <h3 class="card-title">Histori Pesan<strong></strong></h3>
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
                         <i class="fas fa-minus"></i>
                     </button>
                 </div>
@@ -75,7 +86,7 @@
                 </div>
                 @endif
 
-                
+
 
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
@@ -98,13 +109,13 @@
                             <td>{{ $item->status ?? '' }}</td>
                             <td>
                                 @if (in_array($item->status, ['Menunggu', 'DP lunas', 'Lunas']))
-                                    @if ($item->payment->status == 'Berhasil Bayar')
-                                        <span class="badge badge-success">Delivered</span>
-                                    @elseif ($item->payment->status == 'Belum Di Transfer')
-                                        <span class="badge badge-warning">On Process</span>
-                                    @endif
+                                @if ($item->payment->status == 'Berhasil Bayar')
+                                <span class="badge badge-success">Delivered</span>
+                                @elseif ($item->payment->status == 'Belum Di Transfer')
+                                <span class="badge badge-warning">On Process</span>
+                                @endif
                                 @elseif ($item->status == 'Dibatalkan')
-                                    <span class="badge badge-danger">Dibatalkan</span>
+                                <span class="badge badge-danger">Dibatalkan</span>
                                 @endif
                             </td>
                         </tr>
@@ -128,8 +139,7 @@
         centerPadding: '60px',
         slidesToShow: 3,
         arrows: true,
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 768,
                 settings: {
                     arrows: true,
@@ -149,6 +159,7 @@
             }
         ]
     });
+
 </script>
 
 @endsection

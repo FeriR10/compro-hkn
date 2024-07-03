@@ -62,7 +62,7 @@
                     <div class="row mt-3">
                         @foreach ($barangs as $barang)
                         <div class="col-sm-3 mb-3 mt-4 mb-sm-0">
-                            <div class="card h-100">
+                            <div class="card h-100" >
                                 <div class="card-header bg-primary text-white">
                                     <h5 class="card-title mb-0">{{ $barang->nama_barang }}</h5>
                                 </div>
@@ -78,16 +78,16 @@
                                     @endif
                                     <p class="card-text">{{ $barang->kategori_barang }}</p>
                                     <p class="card-text">@currency($barang->harga)</p>
-                                    <div class="form-check">
+                                    
                                         <input type="checkbox" name="keranjang[{{ $barang->id }}]" class="form-control">
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
 
                         @endforeach
                     </div>
-                    <div class="text-center mt-3 fixed-btn"">
+                    <div class="text-center mt-3 fixed-btn">
                         <button type=" submit" class="btn btn-primary btn-lg ">Masukan Keranjang</button>
                     </div>
                 </form>

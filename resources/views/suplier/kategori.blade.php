@@ -50,7 +50,14 @@
           
             <!-- /.card-footer-->
             <div class="card-body">
-                
+            <style>
+                    .table td,
+                    .table th {
+                        font-size: 90%;
+                        vertical-align: middle !important;
+                    }
+
+                </style>
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
                         <tr class="highlight">

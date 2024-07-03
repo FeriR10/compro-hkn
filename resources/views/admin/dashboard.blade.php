@@ -33,6 +33,13 @@
                     {{Session::get('message')}}
                 </div>
                 @endif
+                <style>
+                    .table td,
+                    .table th {
+                        vertical-align: middle !important;
+                    }
+
+                </style>
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
                         <tr class="highlight">
@@ -46,11 +53,11 @@
                     <tbody>
                        @foreach($barang as $barang)
                             <tr>
-                                <th>{{$barang->nama_barang}}</th>
-                                <th>{{$barang->kategori->kategori_barang}}</th>
-                                <th>{{$barang->kode_barang}}</th>
-                                <th>{{$barang->qty}}</th>
-                                <th><img src="{{asset('storage/'.$barang->thumbnail)}}" width="100px" height="100px"></th>
+                                <td>{{$barang->nama_barang}}</td>
+                                <td>{{$barang->kategori->kategori_barang}}</td>
+                                <td>{{$barang->kode_barang}}</td>
+                                <td>{{$barang->qty}}</td>
+                                <td><img src="{{asset('storage/'.$barang->thumbnail)}}" width="100px" height="100px"></td>
                             </tr>
                        @endforeach
                     </tbody>

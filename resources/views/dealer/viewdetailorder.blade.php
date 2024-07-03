@@ -58,7 +58,14 @@
                 </div>
 
                 <hr>
+                <style>
+                    .table td,
+                    .table th {
+                        font-size: 90%;
+                        vertical-align: middle !important;
+                    }
 
+                </style>
                 <table class="table table-bordered table-striped text-center">
                     <thead>
                         <tr class="highlight">

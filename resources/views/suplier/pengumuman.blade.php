@@ -48,12 +48,19 @@
                         <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                         @endif
                     </div>
-                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <button type="submit" class="btn btn-success mt-3">Simpan</button>
                 </form>
             </div>
 
             <div class="card-body">
-                
+            <style>
+                    .table td,
+                    .table th {
+                        font-size: 90%;
+                        vertical-align: middle !important;
+                    }
+
+                </style>
                 <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                     <thead>
                         <tr class="highlight">
