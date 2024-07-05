@@ -48,7 +48,7 @@ class AuthController extends Controller
 
     // Flash pesan jika login gagal
     Session::flash('status', 'failed');
-    Session::flash('message', 'Login Wrong!');
+    Session::flash('message', 'Login gagal, pastikan email dan password anda benar!');
 
     // Redirect ke halaman login jika otentikasi gagal
     return redirect('/login');

@@ -29,11 +29,33 @@
                 @endif
 
                 <div class="row mb-3">
-                    <div class="col-sm-12">
-                        <div class="d-flex justify-content-end">
-                            <form action="/barangjual" method="GET">
+                <div class="col-sm-4">
+                            <form action="/barangjual" method="GET" id="kategoriForm">
                                 @csrf
                                 <div class="d-flex align-items-center">
+                                    
+                                <select name="kategori" class="form-control mr-2" id="kategoriSelect"
+                                        onchange="submitForm()">
+                                        <option value="">Pilih Kategori</option>
+                                        @foreach($kategoris as $kategori)
+                                        <option value="{{$kategori->id}}">
+                                            {{ $kategori->id == $selectedKategori ? 'selected' : '' }}
+                                            {{ $kategori->kategori_barang }}</option>
+                                        @endforeach
+                                    </select>
+                                    <a href="/barangjual" class="btn btn-primary ml-2">
+                                        <i class="fas fa-refresh"></i>
+                                    </a>
+                                </div>
+                            </form>
+                            </div>
+                    <div class="col-sm-8">
+                        
+                        <div class="d-flex justify-content-end">
+                            <form action="/barangjual" method="GET" >
+                                @csrf
+                                <div class="d-flex align-items-center">
+                                    
                                     <label for="cari" class="mr-2">Cari</label>
                                     <input type="text" class="form-control" name="cari" id="cari">
                                     <button title="Cari" type="submit" class="btn btn-primary ml-2">
@@ -50,6 +72,7 @@
                         @if ($pencarian != null)
                         <div class="d-flex justify-content-end mt-2">
                             <p>Hasil pencarian: <b>{{ $pencarian }}</b></p>
+
                         </div>
                         @endif
                     </div>
@@ -57,19 +80,19 @@
 
                 <hr>
 
-                <form action="/keranjang/store" method="POST">
+                <form action="/keranjang/store" method="POST" id="keranjangForm">
                     @csrf
                     <div class="row mt-3">
                         @foreach ($barangs as $barang)
                         <div class="col-sm-3 mb-3 mt-4 mb-sm-0">
-                            <div class="card h-100" >
+                            <div class="card h-100">
                                 <div class="card-header bg-primary text-white">
                                     <h5 class="card-title mb-0">{{ $barang->nama_barang }}</h5>
                                 </div>
                                 <div class="card-body text-center">
                                     @if ($barang->thumbnail)
                                     <img src="{{ asset('storage/' . $barang->thumbnail) }}" class="img-fluid mb-3"
-                                        alt="{{ $barang->nama_barang }}" style="max-height: 200px;">
+                                        alt="{{ $barang->nama_barang }}" style="max-height: 180px;">
                                     @else
                                     <div class="text-center py-5">
                                         <i class="fas fa-image fa-4x text-muted"></i>
@@ -78,16 +101,16 @@
                                     @endif
                                     <p class="card-text">{{ $barang->kategori_barang }}</p>
                                     <p class="card-text">@currency($barang->harga)</p>
-                                    
-                                        <input type="checkbox" name="keranjang[{{ $barang->id }}]" class="form-control">
-                                    
+
+                                    <input type="checkbox" name="keranjang[{{ $barang->id }}]" class="form-control">
+
                                 </div>
                             </div>
                         </div>
 
                         @endforeach
                     </div>
-                    <div class="text-center mt-3 fixed-btn">
+                    <div class="text-center  fixed-btn">
                         <button type=" submit" class="btn btn-primary btn-lg ">Masukan Keranjang</button>
                     </div>
                 </form>
@@ -113,5 +136,18 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script>
+    function submitForm() {
+        document.getElementById('kategoriForm').submit();
+    }
+    document.getElementById('keranjangForm').addEventListener('submit', function(event) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        var checked = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
+        if (!checked) {
+            event.preventDefault();
+            alert('Tidak ada barang yang dipilih');
+        }
+    });
+</script>
 @endsection

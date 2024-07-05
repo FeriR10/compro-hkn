@@ -66,9 +66,7 @@
                             <button type="submit" class="btn btn-primary btn-block" style="color: aliceblue">Sign
                                 In</button>
                         </div>
-                        <div class="col-12 text-center">
-                            Don't have account? <a href="/register" class="">Register</a>
-                        </div>
+                        
                         <!-- /.col -->
                     </div>
                 </form>

@@ -43,7 +43,7 @@
                     <thead>
                         <tr class="highlight">
                             <th>Tanggal</th>
-                            <th>NO Order</th>
+                            <th>No Order</th>
                             <th>Jumlah Barang</th>
                             <th>Total Harga</th>
                             <th>Jenis Payment</th>
@@ -56,7 +56,7 @@
                         @foreach($cekorders as $cek )
                         <tr>
                             <td>{{ $cek->created_at->format('d-m-Y') }}</td>
-                            <td>{{$cek->id}}</td>
+                            <td>2024-{{$cek->id}}</td>
                             <td><a class="badge badge-primary" href="/viewdetailorder/{{ $cek->id }}">View Detail</a></td>
                             <td>@currency($cek->total_harga)</td>
                             <td>{{$cek->payment->jenis_payment->jenis_payment ?? '-'}}</td>

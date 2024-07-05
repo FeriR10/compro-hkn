@@ -56,7 +56,7 @@
                         @foreach($cekorders as $cek )
                         <tr>
                             <!-- $cek get data user name -->
-                            <th> {{$cek->id}} </th>
+                            <th>2024-{{$cek->id}} </th>
                             <th>
                                 <button type="button" class=" " data-toggle="modal" style="border:none"
                                     data-target="#profile-{{$cek->id}}">
@@ -170,7 +170,7 @@
                             </th>
                             <th>
                                 <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button">
+                                    <button class="btn btn-primary btn-sm" type="button">
                                         {{$cek->status}}
                                     </button>
                                     <button type="button"

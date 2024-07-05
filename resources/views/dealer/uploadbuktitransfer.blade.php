@@ -42,7 +42,7 @@
                             {{-- <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt=""> --}}
                             <img src="" class="img-preview img-fluid" alt="">
                             <input type="file" accept=".jpg, .jpeg, .png, .svg, .webp" onchange="previewImg()"
-                                id="image" name="bukti_bayar" class="form-control">
+                                id="image" name="bukti_bayar" class="form-control mb-2">
                             @if($errors->has('bukti_bayar'))
                             <span class="help-block" style="color: red">{{ $errors->first('bukti_bayar') }}</span>
                             @endif

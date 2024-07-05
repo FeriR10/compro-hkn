@@ -21,7 +21,7 @@
                     <p class="card-title">Status: <strong class="badge badge-info">{{$cekorder->status}}</strong></p>
                 </div>
                 <div class="col-md-4 text-right">
-                    <h3 class="card-title float-right">No Pesanan: <strong>{{$cekorder->id}}</strong></h3>
+                    <h3 class="card-title float-right">No Pesanan: <strong>2024-{{$cekorder->id}}</strong></h3>
                 </div>
             </div>
             <div class="card-body">
@@ -39,26 +39,23 @@
 
                 <div class="row mb-3 justify-content-end">
                     <div class="col-md-4">
-                        <form action="/viewdetailorder/{{$cekorder->id}}" method="GET">
+                        <form action="/viewdetailorder/{{$cekorder->id}}" method="GET" id="submitFormcari">
                             @csrf
                             <div class="d-flex justify-content-end align-items-center">
                                 <label for="cari" class="mr-2">Cari</label>
-                                <select name="cari" class="form-control mr-2" id="">
+                                <select name="cari" class="form-control mr-2" id="barangForm">
                                     <option value="">Pilih barang</option>
                                     @foreach($optionRiwayats as $cek)
                                         <option value="{{$cek->id}}">{{$cek->barang->nama_barang}}</option>
                                     @endforeach
                                 </select>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-search"></i>
-                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
 
                 <hr>
-                <style>
+<style>
                     .table td,
                     .table th {
                         font-size: 90%;
@@ -156,5 +153,9 @@
     </section>
     <!-- /.content -->
 </div>
-
+<script>
+function submitFormcari() {
+    document.getElementById('barangForm').submit();
+}
+</script>
 @endsection

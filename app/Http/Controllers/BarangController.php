@@ -164,14 +164,21 @@ class BarangController extends Controller
     }
     public function index(Request $request)
     {
+        $kategoris = Kategori::all();
         $barangs = Barang::query();
         if ($request->cari) {
             $barangs = $barangs->where('nama_barang', 'like', '%' . $request->cari . '%');
         }
         $barangs = $barangs->get();
         $pencarian = $request->cari;
+        if ($request->kategori) {
+            $barangs = $barangs->where('id_kategori', $request->kategori);
+        }
+        $selectedKategori = $request->get('kategori');
+     
+    
         $keranjangs = Keranjang::where('users_id', Auth::user()->id)->get();
-        return view('suplier.barangjual', compact('barangs', 'keranjangs', 'pencarian'));
+        return view('suplier.barangjual', compact('barangs', 'keranjangs', 'pencarian', 'kategoris', 'selectedKategori'));
        
     }
     public function viewdiskon()
@@ -252,5 +259,6 @@ class BarangController extends Controller
         Session::flash('message', 'Edit Kategori sukses');
         return redirect('/kategori');
     }
+    
     
 }

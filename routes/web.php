@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/editkategori/{id}', [BarangController::class, 'editkategori']);
     Route::put('/editkategori/{id}/update', [BarangController::class, 'editkategoriudpate']);
 
+    Route::post('/keranjang/store-notif', [BarangController::class, 'storeNotif']);
+
+
     Route::get('/keranjang', [KeranjangController::class, 'keranjang']);
     Route::get('/diskon', [KeranjangController::class, 'diskon']);
     Route::get('/cekout', [KeranjangController::class, 'cekout']);

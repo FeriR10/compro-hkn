@@ -110,7 +110,7 @@ class DealerController extends Controller
     public function viewdetailorder(Request $request, $id)
     {
         $cekorder = Cekout::where('id', $id)->first();
-        $optionRiwayats = Riwayat::where('cekout_id', $id)->get();
+        $optionRiwayats = Riwayat::where('cekout_id', $id)->get(); 
 
         $riwayat = Riwayat::where('cekout_id', $id);
 

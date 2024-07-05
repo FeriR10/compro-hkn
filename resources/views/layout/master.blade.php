@@ -26,7 +26,7 @@
 
 <style>
     * {
-    font-family:sans-serif; 
+    font-family:Simplifica; 
 }
 .highlight {
     background-color: #3A7A99; /* Dark Cerulean */
