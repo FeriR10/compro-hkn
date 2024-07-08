@@ -10,6 +10,7 @@ use App\Models\Payment;
 use App\Models\Riwayat;
 use App\Models\Profileuser;
 use App\Models\Pengumuman;
+use App\Models\User;
 
 
 
@@ -146,5 +147,44 @@ class DealerController extends Controller
         $home = Cekout::where('users_id', auth()->user()->id)->get();
         return view('dealer.homepage', compact('home', 'pengumuman'));
     }
+    public function editprofile()
+    {
+        $profile = User::where('id', auth()->user()->id)->first();
+        return view('dealer.editprofile', compact('profile'));
+    }
+
+    public function updateprofile(Request $request)
+{
+    $request->validate([
+        'alamat' => 'required',
+        'alamat_kirim' => 'required',
+        'no_telpon' => 'required',
+        'nama_pic' => 'required',
+    ]);
+
+    // Get the authenticated user's ID
+    $userId = auth()->user()->id;
     
+    // Find the profile using the user ID
+    $profile = Profileuser::where('users_id', $userId)->first();
+    
+    // If the profile is not found, create a new one
+    if ($profile === null) {
+        $profile = new Profileuser();
+        $profile->users_id = $userId; // Make sure to set the user ID
+    }
+    
+    // Update the profile fields
+    $profile->alamat = $request->alamat;
+    $profile->alamat_kirim = $request->alamat_kirim;
+    $profile->no_telpon = $request->no_telpon;
+    $profile->nama_pic = $request->nama_pic;
+    
+    // Save the profile (use save() instead of update() for both create and update)
+    $profile->save();
+    
+    // Redirect to the homepage
+    return redirect('/homepage');
+}
+
 }

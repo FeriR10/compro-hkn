@@ -104,12 +104,14 @@
                     </li>
 
                 </ul>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
 
             </div>
 
+            <div class="modal-footer">
+                <a href="/editprofile" class="btn btn-primary">Edit Profile</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>

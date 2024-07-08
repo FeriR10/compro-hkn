@@ -79,6 +79,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/aprove/{id}/dp_lunas', [DealerController::class, 'dp_lunas']);
     Route::get('/aprove/{id}/lunas', [DealerController::class, 'lunas']);
     Route::get('/aprove/{id}/dibatalkan', [DealerController::class, 'dibatalkan']);
+    Route::get('/editprofile', [DealerController::class, 'editprofile']);
+    Route::put('/updateprofile/{id}', [DealerController::class, 'updateprofile']);
     
 
     Route::get('/jenispayment', [PaymentController::class, 'jenispayment']);

@@ -121,11 +121,10 @@
                                         </tr>
                                         @endforelse
                                     </tbody>
-                                    <h2>List Barang</h2>
                                     <table border="1">
                                         <thead>
                                             <tr>
-                                                <div>
+                                                <div class="form-group mb-3">
                                                     <label>Vocher tersedia</label>
                                                     <select name="diskon" class="form-control">
                                                         @foreach ($diskon as $d)
@@ -135,7 +134,7 @@
                                                 </div>
                                             </tr>
                                             <tr>
-                                                <div>
+                                                <div class="form-group mb-3">
                                                     <label>Jenis Payment</label>
                                                     <select name="jenis_payment_id" class="form-control">
 
@@ -149,22 +148,26 @@
                                                 </div>
                                             </tr>
                                             <tr>
-                                                <div class="form-group">
+                                                <div class="form-group mb-3">
                                                     <label for="">Keterangan</label>
                                                     <textarea type="text" name="keterangan" class="form-control"
                                                         value=""></textarea>
 
                                                 </div>
                                             </tr>
+                                            <tr>
+                                                <div class="form-group mb-3 " >
+                                                    <label for="alamat">Alamat Kirim</label>
+                                                    <input type="text" name="alamat" class="form-control"
+                                                        value="{{ Auth::user()->profileuser->alamat_kirim ?? '-' }}" readonly>
+                                                    <a href="/editprofile" class="badge badge-primary mt-2">Edit alamat pengiriman</a>
+                                                </div>
+                                            </tr>
                                         </thead>
                                     </table>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="2" class="text-right font-weight-bold">total</td>
-
-                                            <td>
-                                                @currency($totalHarga)
-                                            </td>
+                                            
                                         </tr>
                                     </tfoot>
                                 </table>
