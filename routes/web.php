@@ -81,6 +81,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/aprove/{id}/dibatalkan', [DealerController::class, 'dibatalkan']);
     Route::get('/editprofile', [DealerController::class, 'editprofile']);
     Route::put('/updateprofile/{id}', [DealerController::class, 'updateprofile']);
+    Route::get('/export/{id}', [DealerController::class, 'exportpdf']);
     
 
     Route::get('/jenispayment', [PaymentController::class, 'jenispayment']);

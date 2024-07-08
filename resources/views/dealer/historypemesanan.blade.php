@@ -50,6 +50,7 @@
                             <th>Status Payment</th>
                             <th>Bukti Transfer</th>
                             <th>Status Kirim</th>
+                            <th>Export PDF</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,7 +76,8 @@
                                 @elseif($cek->status == 'Dibatalkan')
                                 <span class="badge badge-danger">Transaksi dibatalkan</span>
                                 @endif
-                            </td>       
+                            </td> 
+                            <td><a class="badge badge-primary" href="/export/{{ $cek->id }}">Export PDF</a></td>      
                         </tr>
                         @endforeach
                     </tbody>

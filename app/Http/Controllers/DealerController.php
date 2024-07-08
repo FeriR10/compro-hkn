@@ -11,6 +11,8 @@ use App\Models\Riwayat;
 use App\Models\Profileuser;
 use App\Models\Pengumuman;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 
 
@@ -187,4 +189,15 @@ class DealerController extends Controller
     return redirect('/homepage');
 }
 
+    public function exportpdf($id)
+    {
+        $export = Cekout::where('id', $id)->first();
+        $totalharga = Riwayat::where('cekout_id', $id)->sum('total_harga');
+        //pengambilan bukti_bayar pada table payment
+        $riwayat = Riwayat::where('cekout_id', $id)->get();
+        $bukti = Payment::where('id', $export->payment_id)->value('bukti_bayar');
+        $alamat = Profileuser::where('users_id',  $export->users_id)->first();
+        $pdf = PDF::loadView('pdf.export-cekout', compact('export', 'totalharga', 'bukti', 'alamat', 'riwayat'));
+        return $pdf->download('export-cekout'.Carbon::now()->format('d-m-Y').'.pdf');
+    }
 }
