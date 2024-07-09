@@ -65,7 +65,7 @@
 
                     <tfoot>
                         <tr>
-                            <td colspan="4" class="text-right font-weight-bold">total</td>
+                            <td colspan="4" class="text-right font-weight-bold">Total</td>
 
                             <td>
                                 @currency($totalHarga)

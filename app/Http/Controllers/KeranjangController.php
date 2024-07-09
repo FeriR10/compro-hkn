@@ -100,7 +100,7 @@ class KeranjangController extends Controller
         $keranjang = Keranjang::where('users_id', Auth::user()->id)->get();
 
         $diskon_id = $request->diskon;
-        $total_harga = $keranjang->sum('harga_satuan');
+        $total_harga = $keranjang->sum('total_harga');
         $potongan_harga = 0;
         if (!empty($diskon_id)) {
         $diskon = Diskon::find($diskon_id);

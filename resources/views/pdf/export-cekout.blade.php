@@ -114,7 +114,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .row .col {
@@ -178,8 +178,11 @@
         <section class="content-header">
             <h1>Detail Pesanan</h1>
         </section>
-
+        @if(count($riwayat) > 4)
+        <section class="content" style="font-size: 50%;">
+            @else
         <section class="content">
+            @endif
             <div class="card">
                 <div class="card-header row">
                     <div class="col">
@@ -194,14 +197,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-
-
                     <hr>
-                    @if(count($riwayat) > 4)
-                    <table class="table table-bordered table-striped text-center" style="font-size: 50%;">
-                        @else
                         <table class="table table-bordered table-striped text-center">
-                            @endif
                             <thead>
                                 <tr class="highlight">
                                     <th>Kode Barang</th>
@@ -226,7 +223,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-
                 </div>
                 <div class="card-footer">
                     <div class="row">
