@@ -205,7 +205,6 @@
                                     <th>Nama Barang</th>
                                     <th>QTY</th>
                                     <th>Harga Satuan</th>
-                                    <th>Diskon</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
@@ -216,7 +215,6 @@
                                     <td>{{$cek->barang->nama_barang}}</td>
                                     <td>{{$cek->qty}}</td>
                                     <td>@currency($cek->harga_satuan)</td>
-                                    <td>@currency(($cek->harga_satuan * $cek->qty) * $export->diskon->persen)</td>
                                     <td>@currency(($cek->harga_satuan * $cek->qty)-($cek->harga_satuan * $cek->qty) *
                                         $export->diskon->persen)</td>
                                 </tr>

@@ -103,8 +103,8 @@
                         @foreach($home as $item)
                         <tr>
                             <td>{{ $item->created_at->format('d-m-Y') }}</td>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->total_harga }}</td>
+                            <td>2024-{{ $item->id }}</td>
+                            <td>@currency ($item->total_harga )</td>
                             <td>{{ $item->payment->jenis_payment->jenis_payment ?? '' }}</td>
                             <td>{{ $item->status ?? '' }}</td>
                             <td>
