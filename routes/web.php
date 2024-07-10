@@ -67,9 +67,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/keranjang/tambah/{id}', [KeranjangController::class, 'tambah']);
     Route::get('/historyorder', [keranjangController::class, 'historyorder']);
     Route::get('/historyorder/{id}/update', [KeranjangController::class, 'historyorderupdate']);
+    Route::get('/keranjang/hapus/{id}', [KeranjangController::class, 'destroy']);
     
     Route::get('/order', [DealerController::class, 'order']);
-    
     Route::get('/aprove/{id}/payment', [DealerController::class, 'aprovepayment']);
     Route::get('/historypemesanan', [DealerController::class, 'historypemesanan']);
     Route::get('/historypemesanan/{id}/update', [DealerController::class, 'historypemsananupdate']);

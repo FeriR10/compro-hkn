@@ -95,6 +95,12 @@ class KeranjangController extends Controller
         $keranjang->save();
         return redirect('/keranjang');
     }
+    public function destroy($id)
+    {
+        $keranjang = Keranjang::find($id);
+        $keranjang->delete();
+        return redirect('/keranjang');
+    }
     public function cekoutstore(Request $request)
     {
         $keranjang = Keranjang::where('users_id', Auth::user()->id)->get();

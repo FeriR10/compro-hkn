@@ -53,7 +53,30 @@
                                 <a href="/keranjang/kurang/{{ $keranjang->id }}" class="btn btn-danger">-</a>
                                 <a href="/keranjang/tambah/{{ $keranjang->id }}"
                                     class="btn btn-primary @if($keranjang->qty == $keranjang->barang->qty) disabled @endif">+</a>
+                               
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#hapuskeranjang">
+                                    <i class="fas fa-trash" title="Hapus"></i>
+                                </button>
 
+                                <!-- Modal -->
+                                <div class="modal fade" id="hapuskeranjang" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            
+                                            <div class="modal-body">
+                                                Apakah anda yakin ingin menghapus item ini? id = {{ $keranjang->id }}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <a class="btn btn-danger" href="/keranjang/hapus/{{ $keranjang->id }}">Hapus</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             @empty
 
@@ -156,18 +179,20 @@
                                                 </div>
                                             </tr>
                                             <tr>
-                                                <div class="form-group mb-3 " >
+                                                <div class="form-group mb-3 ">
                                                     <label for="alamat">Alamat Kirim</label>
                                                     <input type="text" name="alamat" class="form-control"
-                                                        value="{{ Auth::user()->profileuser->alamat_kirim ?? '-' }}" readonly>
-                                                    <a href="/editprofile" class="badge badge-primary mt-2">Edit alamat pengiriman</a>
+                                                        value="{{ Auth::user()->profileuser->alamat_kirim ?? '-' }}"
+                                                        readonly>
+                                                    <a href="/editprofile" class="badge badge-primary mt-2">Edit alamat
+                                                        pengiriman</a>
                                                 </div>
                                             </tr>
                                         </thead>
                                     </table>
                                     <tfoot>
                                         <tr>
-                                            
+
                                         </tr>
                                     </tfoot>
                                 </table>
