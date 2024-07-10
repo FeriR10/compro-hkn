@@ -53,30 +53,9 @@
                                 <a href="/keranjang/kurang/{{ $keranjang->id }}" class="btn btn-danger">-</a>
                                 <a href="/keranjang/tambah/{{ $keranjang->id }}"
                                     class="btn btn-primary @if($keranjang->qty == $keranjang->barang->qty) disabled @endif">+</a>
-                               
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#hapuskeranjang">
-                                    <i class="fas fa-trash" title="Hapus"></i>
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="hapuskeranjang" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            
-                                            <div class="modal-body">
-                                                Apakah anda yakin ingin menghapus item ini? id = {{ $keranjang->id }}
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <a class="btn btn-danger" href="/keranjang/hapus/{{ $keranjang->id }}">Hapus</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a href="/keranjang/hapus/{{ $keranjang->id }}" class="btn btn-danger" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS ISI MENU INI?')">
+                                    <i class="fas fa-trash"></i></a>
+                              
                             </td>
                             @empty
 

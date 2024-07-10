@@ -68,6 +68,7 @@
                             @if ($cek->status == 'Menunggu' || $cek->status == 'DP lunas' || $cek->status == 'Lunas')
                                     @if ($cek->payment && $cek->payment->status == 'Belum Di Transfer')
                                         <a href="" class="badge badge-warning btn-sm">On Process</a>
+                                        <a class="badge badge-danger" href="/cekoutdibatalkan/{{ $cek->id }}">Batalkan</a>
                                     @elseif ($cek->payment && $cek->payment->status == 'Berhasil Bayar')
                                     <a href="" class="badge badge-success">Delivered</a>
                                     @else
@@ -75,7 +76,8 @@
                                     @endif
                                 @elseif($cek->status == 'Dibatalkan')
                                 <span class="badge badge-danger">Transaksi dibatalkan</span>
-                                @endif
+                                @endif 
+                                
                             </td> 
                             <td><a class="badge badge-primary" href="/export/{{ $cek->id }}">Export PDF</a></td>      
                         </tr>

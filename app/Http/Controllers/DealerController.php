@@ -13,6 +13,7 @@ use App\Models\Pengumuman;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use App\Models\Barang;
 
 
 
@@ -82,12 +83,61 @@ class DealerController extends Controller
         // update data 
         $cekorder = Cekout::find($id);
         $cekorder->status = "Dibatalkan";
+
         $cekorder->update();
         Session::flash('status', 'success');
         Session::flash('message', 'Status Menjadi Dibatalkan');
         return redirect('/order');
     
     }
+    public function cekoutdibatalkan($id)
+{
+    // Temukan data checkout berdasarkan ID
+    $cekorder = Cekout::find($id);
+
+    if (!$cekorder) {
+        Session::flash('status', 'error');
+        Session::flash('message', 'Data checkout tidak ditemukan');
+        return redirect('/historypemesanan');
+    }
+
+    // Update status data checkout
+    $cekorder->status = "Dibatalkan";
+
+    // Dapatkan data riwayat yang terkait
+    $riwayatRecords = $cekorder->riwayat;
+
+    if ($riwayatRecords->isEmpty()) {
+        Session::flash('status', 'error');
+        Session::flash('message', 'Data riwayat tidak ditemukan');
+        return redirect('/historypemesanan');
+    }
+
+    foreach ($riwayatRecords as $riwayat) {
+        // Temukan data barang yang terkait
+        $barang = Barang::find($riwayat->barang_id);
+
+        if ($barang) {
+            // Update jumlah barang
+            $barang->qty += $riwayat->qty;
+            $barang->save();
+        } else {
+            Session::flash('status', 'error');
+            Session::flash('message', 'Data barang tidak ditemukan');
+            return redirect('/historypemesanan');
+        }
+    }
+
+    // Simpan perubahan data checkout
+    $cekorder->save();
+
+    // Set pesan flash dan redirect
+    Session::flash('status', 'success');
+    Session::flash('message', 'Status menjadi dibatalkan');
+    return redirect('/historypemesanan');
+}
+
+    
     public function historypemesanan()
     {
         // $cekorders = Cekout::get()->riwayat()->where('users_id', Auth::user()->id)->get();
