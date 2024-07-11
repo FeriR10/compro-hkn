@@ -77,7 +77,7 @@
                                 @elseif($cek->status == 'Dibatalkan')
                                 <span class="badge badge-danger">Transaksi dibatalkan</span>
                                 @endif 
-                                
+                                 
                             </td> 
                             <td>
                                 <a class="btn btn-danger" href="/export/{{ $cek->id }}" title="Export PDF"><i class="fa-regular fa-file-pdf" ></i></a>
