@@ -9,6 +9,8 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DealerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\ExcelController;
 
 
 
@@ -95,5 +97,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/pengumuman', [PengumumanController::class, 'pengumuman']);
     Route::post('/createpengumuman-process', [PengumumanController::class, 'createpengumumanProcess']);
     Route::get('/delete/{id}', [PengumumanController::class, 'deletepengumuman']);
+
+    Route::get('/history/export/{id}', [ExcelController::class, 'export']);
+    Route::get('/historybyorder', [ExcelController::class, 'historybyorder']);
+
 
 });

@@ -50,7 +50,7 @@
                             <th>Status Payment</th>
                             <th>Bukti Transfer</th>
                             <th>Status Kirim</th>
-                            <th>Export PDF</th>
+                            <th>Export PDF/Excel</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,7 +79,10 @@
                                 @endif 
                                 
                             </td> 
-                            <td><a class="badge badge-primary" href="/export/{{ $cek->id }}">Export PDF</a></td>      
+                            <td>
+                                <a class="btn btn-danger" href="/export/{{ $cek->id }}" title="Export PDF"><i class="fa-regular fa-file-pdf" ></i></a>
+                                <a href="/history/export/{{ $cek->id }}" class="btn btn-success"><i class="fa-regular fa-file-excel " title="Export Excel"></i></a>
+                        </td>      
                         </tr>
                         @endforeach
                     </tbody>
